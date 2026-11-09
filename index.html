@@ -81,8 +81,10 @@
     .portrait-stage:hover .portrait-blob { transform: rotate(-2deg) scale(1.025); }
     .portrait-frame { position: relative; width: min(82%, 400px); height: 480px; overflow: hidden; border-radius: 210px 210px 24px 24px; transform: translateZ(38px) rotate(2deg); border: 9px solid var(--paper); box-shadow: 22px 22px 0 var(--orange), 0 24px 60px rgba(9,31,74,.22); transition: transform .45s cubic-bezier(.2,.8,.2,1), box-shadow .45s; }
     .portrait-stage:hover .portrait-frame { transform: translateZ(52px) rotate(0) translateY(-7px); box-shadow: 25px 28px 0 var(--orange), 0 30px 70px rgba(9,31,74,.28); }
-    .portrait-frame img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 28%; transition: transform .65s cubic-bezier(.2,.8,.2,1); }
-    .portrait-stage:hover .portrait-frame img { animation: portrait-film 4s ease-in-out infinite; }
+    .portrait-frame > img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 28%; }
+    .portrait-person { position: absolute; inset: 0; overflow: hidden; clip-path: ellipse(43% 48% at 50% 43%); transform: translateZ(24px); pointer-events: none; }
+    .portrait-person img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 28%; }
+    .portrait-stage:hover .portrait-person { animation: person-float 4s cubic-bezier(.35,.05,.2,1) infinite; filter: drop-shadow(0 9px 9px rgba(7,20,45,.25)); }
     .portrait-caption { position: absolute; z-index: 2; right: 3px; bottom: 38px; padding: 12px 16px; border: 2px solid var(--ink); border-radius: 14px 14px 3px 14px; background: var(--mint); font-size: 12px; font-weight: 750; transform: translateZ(92px) rotate(4deg); animation: bob 4s ease-in-out infinite; }
     .orbit { position: absolute; z-index: 1; width: 82px; height: 82px; top: 37px; right: 6%; border: 1px solid rgba(17,28,45,.35); border-radius: 50%; transform: translateZ(45px); animation: rotate 16s linear infinite; }
     .orbit::before { content: ""; position: absolute; width: 16px; height: 16px; top: 3px; left: 15px; background: var(--orange); border-radius: 50%; }
@@ -133,14 +135,19 @@
     .project:focus-visible { outline: 3px solid var(--orange); outline-offset: 4px; }
     .visual-series--lake .project:nth-child(-n+2), .visual-series--armor .project:nth-child(-n+2) { grid-column: span 3; min-height: 390px; }
     .visual-series--lake .project:nth-child(n+3), .visual-series--daily .project, .visual-series--armor .project:nth-child(n+3) { grid-column: span 2; min-height: 290px; }
-    .project img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: translateZ(20px) scale(1.025); transition: transform .9s cubic-bezier(.2,.8,.2,1), filter .6s; will-change: transform; }
+    .project > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: translate3d(calc(var(--depth-x,0px) * -.45),calc(var(--depth-y,0px) * -.45),0) scale(1.09); transition: transform 1.2s cubic-bezier(.2,.8,.2,1), filter .6s; will-change: transform; }
+    .project-person { position: absolute; z-index: 2; inset: 0; overflow: hidden; pointer-events: none; clip-path: ellipse(36% 47% at var(--person-x,50%) var(--person-y,46%)); transform: translate3d(calc(var(--depth-x,0px) * .7),calc(var(--depth-y,0px) * .7),54px); transform-style: preserve-3d; transition: transform .7s cubic-bezier(.2,.8,.2,1), filter .7s; filter: drop-shadow(0 10px 12px rgba(7,20,45,.18)); }
+    .project-person img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.09); }
+    .project-depth-frame { position: absolute; z-index: 2; inset: 12px; border: 1px solid rgba(255,255,255,.22); border-radius: 13px; pointer-events: none; transform: translateZ(34px) scale(.94); opacity: 0; transition: opacity .5s, inset .8s cubic-bezier(.2,.8,.2,1), transform .8s cubic-bezier(.2,.8,.2,1); box-shadow: inset 0 0 0 1px rgba(12,22,41,.12), 0 0 0 1px rgba(255,255,255,.08); }
     .visual-series--lake .project:first-child img { object-position: 44% center; }
     .visual-series--lake .project:nth-child(2) img { object-position: center 40%; }
     .visual-series--lake .project:nth-child(5) img { object-position: center 34%; }
     .visual-series--daily .project:first-child img { object-position: center 44%; }
     .visual-series--armor .project:first-child img { object-position: center 36%; }
     .visual-series--armor .project:nth-child(2) img { object-position: center 36%; }
-    .project:hover img, .project:focus-visible img { animation: photo-flight 4s cubic-bezier(.35,.05,.2,1) infinite; filter: saturate(1.12) contrast(1.02); }
+    .project:hover > img, .project:focus-visible > img { filter: saturate(1.12) contrast(1.02); }
+    .project:hover .project-person, .project:focus-visible .project-person { animation: person-float 4s cubic-bezier(.35,.05,.2,1) infinite; filter: drop-shadow(0 16px 18px rgba(7,20,45,.32)); }
+    .project:hover .project-depth-frame, .project:focus-visible .project-depth-frame { inset: 25px; transform: translateZ(42px) scale(.98); opacity: 1; }
     .project::before { content: ""; position: absolute; z-index: 3; inset: 0; pointer-events: none; opacity: 0; background: radial-gradient(300px circle at var(--gx) var(--gy), rgba(255,255,255,.42), transparent 65%); mix-blend-mode: screen; transition: opacity .35s; transform: translateZ(55px); }
     .project:hover::before, .project:focus-visible::before { opacity: 1; animation: photo-glint 4s ease-in-out infinite; }
     .project::after { content: ""; position: absolute; z-index: 1; inset: 22% 0 0; background: linear-gradient(transparent 4%, rgba(5,14,29,.82)); pointer-events: none; transform: translateZ(30px); }
@@ -194,8 +201,7 @@
     @keyframes lightbox-in { from { opacity: 0; transform: scale(.94) translateY(18px); } to { opacity: 1; transform: scale(1) translateY(0); } }
     @keyframes hero-enter { from { opacity: 0; transform: translateY(24px); filter: blur(5px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
     @keyframes stage-enter { from { opacity: 0; translate: 0 28px; scale: .96; filter: blur(8px); } to { opacity: 1; translate: 0 0; scale: 1; filter: blur(0); } }
-    @keyframes portrait-film { 0%,100% { transform: translate3d(0,0,24px) scale(1.025); filter: saturate(1); } 35% { transform: translate3d(-5px,-4px,36px) scale(1.075); filter: saturate(1.08); } 70% { transform: translate3d(5px,2px,30px) scale(1.055); filter: saturate(1.14); } }
-    @keyframes photo-flight { 0%,100% { transform: translate3d(var(--img-x,0),var(--img-y,0),22px) scale(1.035); } 32% { transform: translate3d(calc(var(--img-x,0) * -.4),calc(var(--img-y,0) * -.4),48px) scale(1.14); } 68% { transform: translate3d(var(--img-x,0),var(--img-y,0),58px) scale(1.18); } }
+    @keyframes person-float { 0%,100% { translate: 0 0; scale: 1; } 28% { translate: 0 -3px; scale: 1.012; } 62% { translate: 0 2px; scale: 1.018; } }
     @keyframes photo-glint { 0%,100% { opacity: .35; } 50% { opacity: .9; } }
     @keyframes label-rise { 0%,100% { transform: translateZ(58px) translateY(0); } 45% { transform: translateZ(68px) translateY(-3px); } }
 
@@ -282,7 +288,7 @@
       </div>
       <div class="portrait-stage" id="portrait-stage" aria-label="赵逸飞的半身照">
         <div class="portrait-blob" aria-hidden="true"></div><div class="orbit" aria-hidden="true"></div><span class="spark" aria-hidden="true">✳</span>
-        <div class="portrait-frame"><img src="assets/zhaoyifei-portrait.jpg" alt="赵逸飞身穿炭灰色外套的手绘插画半身肖像" fetchpriority="high"></div>
+        <div class="portrait-frame"><img src="assets/zhaoyifei-portrait.jpg" alt="赵逸飞身穿炭灰色外套的手绘插画半身肖像" fetchpriority="high"><span class="portrait-person" aria-hidden="true"><img src="assets/zhaoyifei-portrait.jpg" alt=""></span></div>
         <div class="portrait-caption">无限进步 ↗</div>
       </div>
       <div class="scroll-note" aria-hidden="true">SCROLL TO EXPLORE<i></i></div>
@@ -311,60 +317,60 @@
         <div class="section-kicker">02 / VISUAL NOTES</div>
         <div class="section-title-row"><h2 class="section-title">视觉内容片段</h2><p class="section-aside">按故事主题分成独立板块。悬停照片触发 4 秒 3D 镜头动画，点击查看大图。</p></div>
         <section class="visual-series visual-series--lake reveal" aria-labelledby="lake-series-title">
-          <div class="series-head"><div><span class="series-index">SERIES 01 / LAKESIDE</span><h3 class="series-title" id="lake-series-title">湖畔奇遇</h3></div><p class="series-description">沿着海岸展开的角色小故事。移动鼠标，观察画面在 3D 景深中的 4 秒镜头运动。</p></div>
+          <div class="series-head"><div><span class="series-index">SERIES 01 / LAKESIDE</span><h3 class="series-title" id="lake-series-title">湖畔奇遇</h3></div><p class="series-description">先穿过湖岸与远景，再靠近角色。鼠标会牵引不同景深，人物独立浮动。</p></div>
           <div class="works-grid">
           <button class="project reveal" type="button" data-tilt data-lightbox data-title="湖畔相遇" data-kind="CHARACTER SCENE" data-description="骑士、海岸与火烈鸟构成的宽幅角色场景。">
-            <img src="assets/works/lakeside-knight.jpg" alt="骑士与火烈鸟相遇的湖畔插画" loading="lazy"><span class="project-index">01</span><div class="project-caption"><span class="project-type">CHARACTER SCENE</span><h3>湖畔相遇</h3><p>角色场景 · 插画叙事</p></div>
+            <img src="assets/works/lakeside-knight.jpg" alt="骑士与火烈鸟相遇的湖畔插画" loading="lazy"><span class="project-person" aria-hidden="true"><img src="assets/works/lakeside-knight.jpg" alt="" loading="lazy"></span><span class="project-depth-frame" aria-hidden="true"></span><span class="project-index">01</span><div class="project-caption"><span class="project-type">CHARACTER SCENE</span><h3>湖畔相遇</h3><p>角色场景 · 插画叙事</p></div>
           </button>
           <button class="project reveal delay-1" type="button" data-tilt data-lightbox data-title="骑士角色近景" data-kind="CHARACTER STUDY" data-description="角色表情、眼镜与发型的近景细节。">
-            <img src="assets/works/knight-closeup.jpg" alt="蓝色衣着角色的头部近景插画" loading="lazy"><span class="project-index">02</span><div class="project-caption"><span class="project-type">CHARACTER STUDY</span><h3>角色近景</h3><p>人物表情 · 造型细节</p></div>
+            <img src="assets/works/knight-closeup.jpg" alt="蓝色衣着角色的头部近景插画" loading="lazy"><span class="project-person" aria-hidden="true"><img src="assets/works/knight-closeup.jpg" alt="" loading="lazy"></span><span class="project-depth-frame" aria-hidden="true"></span><span class="project-index">02</span><div class="project-caption"><span class="project-type">CHARACTER STUDY</span><h3>角色近景</h3><p>人物表情 · 造型细节</p></div>
           </button>
           <button class="project reveal delay-2" type="button" data-tilt data-lightbox data-title="湖边的火烈鸟" data-kind="SCENE DETAIL" data-description="湖岸水色与火烈鸟的局部场景。">
-            <img src="assets/works/flamingo-pair.jpg" alt="湖水中的两只火烈鸟插画" loading="lazy"><span class="project-index">03</span><div class="project-caption"><span class="project-type">SCENE DETAIL</span><h3>湖边的火烈鸟</h3><p>色彩片段 · 环境细节</p></div>
+            <img src="assets/works/flamingo-pair.jpg" alt="湖水中的两只火烈鸟插画" loading="lazy"><span class="project-person" aria-hidden="true"><img src="assets/works/flamingo-pair.jpg" alt="" loading="lazy"></span><span class="project-depth-frame" aria-hidden="true"></span><span class="project-index">03</span><div class="project-caption"><span class="project-type">SCENE DETAIL</span><h3>湖边的火烈鸟</h3><p>色彩片段 · 环境细节</p></div>
           </button>
           <button class="project reveal" type="button" data-tilt data-lightbox data-title="头盔与火烈鸟" data-kind="VISUAL PUN" data-description="将骑士头盔与火烈鸟形象结合的趣味画面。">
-            <img src="assets/works/helmet-flamingo.jpg" alt="戴着骑士头盔的火烈鸟插画" loading="lazy"><span class="project-index">04</span><div class="project-caption"><span class="project-type">VISUAL PUN</span><h3>头盔与火烈鸟</h3><p>角色组合 · 趣味表达</p></div>
+            <img src="assets/works/helmet-flamingo.jpg" alt="戴着骑士头盔的火烈鸟插画" loading="lazy"><span class="project-person" aria-hidden="true"><img src="assets/works/helmet-flamingo.jpg" alt="" loading="lazy"></span><span class="project-depth-frame" aria-hidden="true"></span><span class="project-index">04</span><div class="project-caption"><span class="project-type">VISUAL PUN</span><h3>头盔与火烈鸟</h3><p>角色组合 · 趣味表达</p></div>
           </button>
           <button class="project reveal delay-1" type="button" data-tilt data-lightbox data-title="湖畔场景草图" data-kind="PROCESS FRAME" data-description="线稿阶段的场景构图与人物动作探索。">
-            <img src="assets/works/lakeside-storyboard.jpg" alt="骑士与火烈鸟的线稿分镜草图" loading="lazy"><span class="project-index">05</span><div class="project-caption"><span class="project-type">PROCESS FRAME</span><h3>湖畔场景草图</h3><p>构图探索 · 过程素材</p></div>
+            <img src="assets/works/lakeside-storyboard.jpg" alt="骑士与火烈鸟的线稿分镜草图" loading="lazy"><span class="project-person" aria-hidden="true"><img src="assets/works/lakeside-storyboard.jpg" alt="" loading="lazy"></span><span class="project-depth-frame" aria-hidden="true"></span><span class="project-index">05</span><div class="project-caption"><span class="project-type">PROCESS FRAME</span><h3>湖畔场景草图</h3><p>构图探索 · 过程素材</p></div>
           </button>
           </div>
         </section>
         <section class="visual-series visual-series--daily reveal" aria-labelledby="daily-series-title">
-          <div class="series-head"><div><span class="series-index">SERIES 02 / DAILY SCENES</span><h3 class="series-title" id="daily-series-title">盔甲骑士的日常</h3></div><p class="series-description">阅读、休憩与桌边的生活切片。每张图片都可以悬停感受镜头推进，点击展开全图。</p></div>
+          <div class="series-head"><div><span class="series-index">SERIES 02 / DAILY SCENES</span><h3 class="series-title" id="daily-series-title">盔甲骑士的日常</h3></div><p class="series-description">阅读、休憩与桌边的生活切片。悬停时背景后退、人物前移，像走进漫画格。</p></div>
           <div class="works-grid">
           <button class="project reveal delay-2" type="button" data-tilt data-lightbox data-title="盔甲骑士的午后" data-kind="VISUAL STORY" data-description="室内场景里的骑士、阅读与生活细节。">
-            <img src="assets/works/knight-studio.jpg" alt="盔甲骑士在工作室阅读的插画" loading="lazy"><span class="project-index">06</span><div class="project-caption"><span class="project-type">VISUAL STORY</span><h3>盔甲骑士的午后</h3><p>角色场景 · 日常叙事</p></div>
+            <img src="assets/works/knight-studio.jpg" alt="盔甲骑士在工作室阅读的插画" loading="lazy"><span class="project-person" aria-hidden="true"><img src="assets/works/knight-studio.jpg" alt="" loading="lazy"></span><span class="project-depth-frame" aria-hidden="true"></span><span class="project-index">06</span><div class="project-caption"><span class="project-type">VISUAL STORY</span><h3>盔甲骑士的午后</h3><p>角色场景 · 日常叙事</p></div>
           </button>
           <button class="project reveal" type="button" data-tilt data-lightbox data-title="一张桌边小景" data-kind="STORY DETAIL" data-description="盔甲、咖啡与一只举着托盘的猴子。">
-            <img src="assets/works/monkey-cafe.jpg" alt="桌子下方的猴子和咖啡托盘插画" loading="lazy"><span class="project-index">07</span><div class="project-caption"><span class="project-type">STORY DETAIL</span><h3>一张桌边小景</h3><p>生活细节 · 角色互动</p></div>
+            <img src="assets/works/monkey-cafe.jpg" alt="桌子下方的猴子和咖啡托盘插画" loading="lazy"><span class="project-person" aria-hidden="true"><img src="assets/works/monkey-cafe.jpg" alt="" loading="lazy"></span><span class="project-depth-frame" aria-hidden="true"></span><span class="project-index">07</span><div class="project-caption"><span class="project-type">STORY DETAIL</span><h3>一张桌边小景</h3><p>生活细节 · 角色互动</p></div>
           </button>
           <button class="project reveal delay-1" type="button" data-tilt data-lightbox data-title="盔甲里的阅读时刻" data-kind="CHARACTER MOMENT" data-description="骑士坐在椅子里阅读的角色片段。">
-            <img src="assets/works/armored-reader.jpg" alt="穿着盔甲的骑士坐着阅读插画" loading="lazy"><span class="project-index">08</span><div class="project-caption"><span class="project-type">CHARACTER MOMENT</span><h3>盔甲里的阅读时刻</h3><p>人物状态 · 角色切片</p></div>
+            <img src="assets/works/armored-reader.jpg" alt="穿着盔甲的骑士坐着阅读插画" loading="lazy"><span class="project-person" aria-hidden="true"><img src="assets/works/armored-reader.jpg" alt="" loading="lazy"></span><span class="project-depth-frame" aria-hidden="true"></span><span class="project-index">08</span><div class="project-caption"><span class="project-type">CHARACTER MOMENT</span><h3>盔甲里的阅读时刻</h3><p>人物状态 · 角色切片</p></div>
           </button>
           </div>
         </section>
         <section class="visual-series visual-series--armor reveal" aria-labelledby="armor-series-title">
-          <div class="series-head"><div><span class="series-index">SERIES 03 / ARMOR UNIVERSE</span><h3 class="series-title" id="armor-series-title">盔甲宇宙</h3></div><p class="series-description">从人物造型、群像海报到故事尾声。指针会牵引光线、画面与卡片的空间层次。</p></div>
+          <div class="series-head"><div><span class="series-index">SERIES 03 / ARMOR UNIVERSE</span><h3 class="series-title" id="armor-series-title">盔甲宇宙</h3></div><p class="series-description">从人物造型、群像海报到故事尾声。逐层推进空间，角色会有各自的轻微动作。</p></div>
           <div class="works-grid">
           <button class="project reveal delay-2" type="button" data-tilt data-lightbox data-title="Ghosts in My Armor" data-kind="POSTER / CONCEPT" data-description="蓝色与橙红色盔甲人物构成的群像海报。">
-            <img src="assets/works/ghosts-in-armor.jpg" alt="蓝色与橙红色盔甲人物群像海报插画" loading="lazy"><span class="project-index">09</span><div class="project-caption"><span class="project-type">POSTER / CONCEPT</span><h3>Ghosts in My Armor</h3><p>群像概念 · 海报画面</p></div>
+            <img src="assets/works/ghosts-in-armor.jpg" alt="蓝色与橙红色盔甲人物群像海报插画" loading="lazy"><span class="project-person" aria-hidden="true"><img src="assets/works/ghosts-in-armor.jpg" alt="" loading="lazy"></span><span class="project-depth-frame" aria-hidden="true"></span><span class="project-index">09</span><div class="project-caption"><span class="project-type">POSTER / CONCEPT</span><h3>Ghosts in My Armor</h3><p>群像概念 · 海报画面</p></div>
           </button>
           <button class="project reveal" type="button" data-tilt data-lightbox data-title="兜帽角色造型" data-kind="CHARACTER LOOK" data-description="深色衣着、银色链饰与蓝白背景构成的造型画面。">
-            <img src="assets/works/hooded-character.jpg" alt="深色兜帽人物全身插画" loading="lazy"><span class="project-index">10</span><div class="project-caption"><span class="project-type">CHARACTER LOOK</span><h3>兜帽角色造型</h3><p>服装轮廓 · 人物视觉</p></div>
+            <img src="assets/works/hooded-character.jpg" alt="深色兜帽人物全身插画" loading="lazy"><span class="project-person" aria-hidden="true"><img src="assets/works/hooded-character.jpg" alt="" loading="lazy"></span><span class="project-depth-frame" aria-hidden="true"></span><span class="project-index">10</span><div class="project-caption"><span class="project-type">CHARACTER LOOK</span><h3>兜帽角色造型</h3><p>服装轮廓 · 人物视觉</p></div>
           </button>
           <button class="project reveal delay-1" type="button" data-tilt data-lightbox data-title="群像概念" data-kind="CAST STUDY" data-description="不同盔甲角色组合成的群像视觉。">
-            <img src="assets/works/armored-cast.jpg" alt="多位盔甲角色组成的群像画面" loading="lazy"><span class="project-index">11</span><div class="project-caption"><span class="project-type">CAST STUDY</span><h3>群像概念</h3><p>角色组合 · 色彩系统</p></div>
+            <img src="assets/works/armored-cast.jpg" alt="多位盔甲角色组成的群像画面" loading="lazy"><span class="project-person" aria-hidden="true"><img src="assets/works/armored-cast.jpg" alt="" loading="lazy"></span><span class="project-depth-frame" aria-hidden="true"></span><span class="project-index">11</span><div class="project-caption"><span class="project-type">CAST STUDY</span><h3>群像概念</h3><p>角色组合 · 色彩系统</p></div>
           </button>
           <button class="project reveal delay-2" type="button" data-tilt data-lightbox data-title="故事的尾声" data-kind="ENDING FRAME" data-description="宝箱、粉色触手与手写对白构成的结尾画面。">
-            <img src="assets/works/treasure-chest.jpg" alt="宝箱和粉色触手的漫画结尾画面" loading="lazy"><span class="project-index">12</span><div class="project-caption"><span class="project-type">ENDING FRAME</span><h3>故事的尾声</h3><p>漫画画面 · 叙事收束</p></div>
+            <img src="assets/works/treasure-chest.jpg" alt="宝箱和粉色触手的漫画结尾画面" loading="lazy"><span class="project-person" aria-hidden="true"><img src="assets/works/treasure-chest.jpg" alt="" loading="lazy"></span><span class="project-depth-frame" aria-hidden="true"></span><span class="project-index">12</span><div class="project-caption"><span class="project-type">ENDING FRAME</span><h3>故事的尾声</h3><p>漫画画面 · 叙事收束</p></div>
           </button>
           <button class="project reveal" type="button" data-tilt data-lightbox data-title="盔甲细节" data-kind="DETAIL FRAME" data-description="红色盔甲与蓝色群像之间的视觉细节。">
-            <img src="assets/works/armor-detail.jpg" alt="红色盔甲人物的局部特写" loading="lazy"><span class="project-index">13</span><div class="project-caption"><span class="project-type">DETAIL FRAME</span><h3>盔甲细节</h3><p>色彩对比 · 角色特写</p></div>
+            <img src="assets/works/armor-detail.jpg" alt="红色盔甲人物的局部特写" loading="lazy"><span class="project-person" aria-hidden="true"><img src="assets/works/armor-detail.jpg" alt="" loading="lazy"></span><span class="project-depth-frame" aria-hidden="true"></span><span class="project-index">13</span><div class="project-caption"><span class="project-type">DETAIL FRAME</span><h3>盔甲细节</h3><p>色彩对比 · 角色特写</p></div>
           </button>
           </div>
         </section>
-        <p class="works-footnote">作品图像选自你提供的素材。点击任意卡片可放大浏览。</p>
+        <p class="works-footnote">分层视差与角色微动约每 4 秒完成一轮；移动鼠标可从不同角度走入画面。点击卡片放大浏览。</p>
       </div>
     </section>
 
@@ -450,14 +456,16 @@
           const y = (event.clientY - rect.top) / rect.height - .5;
           card.style.setProperty('--gx', `${(x + .5) * 100}%`);
           card.style.setProperty('--gy', `${(y + .5) * 100}%`);
-          card.style.setProperty('--img-x', `${-x * 14}px`);
-          card.style.setProperty('--img-y', `${-y * 14}px`);
+          card.style.setProperty('--depth-x', `${-x * 20}px`);
+          card.style.setProperty('--depth-y', `${-y * 20}px`);
           card.style.transform = `perspective(1150px) rotateX(${-y * 8}deg) rotateY(${x * 9}deg) translateY(-5px)`;
         });
         card.addEventListener('pointerleave', () => {
           card.style.transform = '';
           card.style.setProperty('--gx', '50%');
           card.style.setProperty('--gy', '50%');
+          card.style.setProperty('--depth-x', '0px');
+          card.style.setProperty('--depth-y', '0px');
           card.style.setProperty('--img-x', '0');
           card.style.setProperty('--img-y', '0');
         });
