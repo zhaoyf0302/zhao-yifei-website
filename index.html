@@ -29,7 +29,7 @@
     html { scroll-behavior: smooth; scroll-padding-top: 86px; }
     body { margin: 0; color: var(--ink); background: var(--paper); font-family: var(--sans); overflow-x: hidden; }
     .scroll-progress { position: fixed; z-index: 30; inset: 0 0 auto; height: 3px; background: transparent; }
-    .scroll-progress span { display: block; width: 0; height: 100%; background: linear-gradient(90deg, var(--orange), #ffc24b, var(--blue)); box-shadow: 0 0 12px rgba(23,105,255,.5); }
+    .scroll-progress span { display: block; width: 0; height: 100%; background: var(--orange); }
     .pointer-follower { position: fixed; z-index: 40; top: 0; left: 0; width: 38px; height: 38px; display: grid; place-items: center; border: 1px solid rgba(23,105,255,.8); border-radius: 50%; color: white; background: rgba(23,105,255,.16); backdrop-filter: blur(4px); pointer-events: none; opacity: 0; transform: translate3d(-100px,-100px,0) scale(.65); transition: width .25s, height .25s, opacity .2s, background .25s, border-color .25s; font-size: 8px; letter-spacing: .04em; font-weight: 800; }
     .pointer-follower.is-on { opacity: 1; }
     .pointer-follower.is-active { width: 76px; height: 76px; border-color: var(--orange); background: rgba(255,105,59,.85); }
@@ -38,7 +38,8 @@
     body::before { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 8; opacity: .14; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.13'/%3E%3C/svg%3E"); }
     a { color: inherit; }
     button { font: inherit; }
-    .shell { width: min(1220px, calc(100% - 64px)); margin: 0 auto; }
+    .shell { width: min(1220px, calc(100% - 64px)); margin: 0 auto; position: relative; z-index: 2; }
+    main { position: relative; }
     .topbar { position: sticky; top: 0; z-index: 10; background: rgba(245,243,237,.88); backdrop-filter: blur(18px); border-bottom: 1px solid var(--line); }
     .topbar-inner { height: 76px; display: flex; align-items: center; justify-content: space-between; }
     .brand { display: inline-flex; align-items: center; gap: 11px; text-decoration: none; font-weight: 750; letter-spacing: .04em; }
@@ -62,7 +63,6 @@
     .hero-copy > .hero-actions { animation: hero-enter .95s .48s both; }
     .hero-copy > .hero-meta { animation: hero-enter .95s .58s both; }
     .eyebrow { display: inline-flex; align-items: center; gap: 10px; color: var(--blue-deep); font-size: 12px; letter-spacing: .16em; font-weight: 700; text-transform: uppercase; }
-    .status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--orange); box-shadow: 0 0 0 5px rgba(255,105,59,.14); animation: pulse 2s infinite; }
     h1 { margin: 24px 0 18px; font: 750 clamp(54px, 7.1vw, 92px)/1.08 var(--serif); letter-spacing: -.075em; }
     h1 .name { display: block; color: var(--blue); }
     .hero-role { margin: 0 0 14px; font-size: clamp(18px, 2vw, 24px); font-weight: 650; letter-spacing: -.025em; }
@@ -88,26 +88,20 @@
     .portrait-person { position: absolute; inset: 0; overflow: hidden; clip-path: ellipse(43% 48% at 50% 43%); transform: translateZ(24px); pointer-events: none; }
     .portrait-person img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 28%; }
     .portrait-stage:hover .portrait-person { animation: person-float 4s cubic-bezier(.35,.05,.2,1) infinite; filter: drop-shadow(0 9px 9px rgba(7,20,45,.25)); }
-    .portrait-caption { position: absolute; z-index: 2; right: 3px; bottom: 38px; padding: 12px 16px; border: 2px solid var(--ink); border-radius: 14px 14px 3px 14px; background: var(--mint); font-size: 12px; font-weight: 750; transform: translateZ(92px) rotate(4deg); animation: bob 4s ease-in-out infinite; }
-    .orbit { position: absolute; z-index: 1; width: 82px; height: 82px; top: 37px; right: 6%; border: 1px solid rgba(17,28,45,.35); border-radius: 50%; transform: translateZ(45px); animation: rotate 16s linear infinite; }
-    .orbit::before { content: ""; position: absolute; width: 16px; height: 16px; top: 3px; left: 15px; background: var(--orange); border-radius: 50%; }
-    .spark { position: absolute; z-index: 1; left: 4%; top: 20%; color: var(--orange); font-size: 32px; animation: bob 3.3s ease-in-out infinite; }
     .scroll-note { position: absolute; bottom: 9px; left: 50%; display: flex; flex-direction: column; align-items: center; gap: 7px; color: var(--muted); font-size: 9px; letter-spacing: .18em; transform: translateX(-50%); }
     .scroll-note i { width: 1px; height: 24px; background: var(--blue); transform-origin: top; animation: stretch 1.6s ease-in-out infinite; }
 
-    .guide { position: fixed; z-index: 25; right: max(22px, calc((100vw - 1220px)/2)); bottom: 24px; display: grid; grid-template-columns: 82px minmax(170px, 230px); align-items: end; gap: 11px; pointer-events: none; perspective: 900px; }
-    .guide-avatar { width: 82px; height: 88px; padding: 0; border: 0; border-radius: 0; background: transparent; filter: drop-shadow(4px 7px 0 rgba(17,28,45,.2)); pointer-events: auto; transform: perspective(500px) rotateX(var(--gaze-y,0deg)) rotateY(var(--gaze-x,0deg)) rotate(-5deg) translateZ(36px); transition: transform .35s cubic-bezier(.2,.8,.2,1), filter .35s; overflow: visible; }
-    .guide-avatar:hover { transform: perspective(500px) rotateX(var(--gaze-y,0deg)) rotateY(var(--gaze-x,0deg)) rotate(0) translateY(-7px) translateZ(50px) scale(1.08); filter: drop-shadow(6px 11px 0 rgba(23,105,255,.26)); }
-    .guide-avatar img { width: 100%; height: 100%; display: block; object-fit: contain; object-position: center bottom; border-radius: 0; }
-    .guide-card { padding: 12px 14px; border: 2px solid var(--ink); border-radius: 15px 15px 4px 15px; color: var(--ink); background: var(--paper); box-shadow: 5px 6px 0 var(--blue); transform: rotateY(-9deg) translateZ(24px); pointer-events: auto; transition: transform .35s, box-shadow .35s; }
-    .guide-card:hover { transform: rotateY(0) translateY(-4px) translateZ(42px); box-shadow: 8px 10px 0 var(--orange); }
-    .guide-kicker { display: flex; justify-content: space-between; color: var(--blue-deep); font-size: 9px; letter-spacing: .11em; font-weight: 800; }
-    .guide-kicker i { color: var(--orange); font-style: normal; animation: pulse 2s infinite; }
-    .guide-say { min-height: 36px; margin: 7px 0 9px; font-size: 11px; line-height: 1.65; }
-    .guide-next { display: inline-flex; align-items: center; gap: 6px; padding: 0; border: 0; color: var(--blue); background: none; font-size: 10px; font-weight: 800; cursor: pointer; }
+    .guide { position: fixed; z-index: 25; right: max(22px, calc((100vw - 1220px)/2)); bottom: 24px; display: grid; grid-template-columns: 98px minmax(170px, 230px); align-items: end; gap: 11px; pointer-events: none; perspective: 900px; transition: transform .8s cubic-bezier(.2,.8,.2,1); transform: translate3d(var(--camera-x,0px),var(--camera-y,0px),0); }
+    .guide-avatar { width: 98px; height: 88px; padding: 0; border: 0; border-radius: 0; background-image: url("assets/mascot-zhaoyifei-frames-3d.png"); background-repeat: no-repeat; background-size: 200% 200%; background-position: 100% 100%; filter: drop-shadow(2px 3px 0 rgba(17,28,45,.18)); pointer-events: auto; transform: perspective(500px) rotateX(var(--gaze-y,0deg)) rotateY(var(--gaze-x,0deg)); transition: transform .35s cubic-bezier(.2,.8,.2,1); overflow: visible; }
+    .guide.is-walking .guide-avatar { animation: mascot-walk 1.8s steps(1,end) infinite; }
+    .guide-card { padding: 4px 0 6px; color: var(--ink); pointer-events: auto; transition: transform .4s; }
+    .guide-kicker { color: var(--blue-deep); font-size: 9px; letter-spacing: .11em; font-weight: 800; }
+    .guide-say { min-height: 36px; margin: 7px 0 6px; font-size: 11px; line-height: 1.65; }
+    .guide-next { display: inline-flex; align-items: center; gap: 6px; padding: 0 0 3px; border: 0; border-bottom: 1px solid var(--orange); color: var(--blue); background: none; font-size: 10px; font-weight: 800; cursor: pointer; }
     .guide-next:hover { color: var(--orange); }
-    .guide.is-speaking .guide-avatar { animation: guide-pop .55s cubic-bezier(.2,.8,.2,1); }
 
+    .story-ink { position: absolute; z-index: 1; inset: 0 auto 0 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+    .story-ink path { fill: none; stroke: #1769ff; stroke-width: 3.2; stroke-linecap: round; stroke-linejoin: round; opacity: .24; vector-effect: non-scaling-stroke; }
     .ticker { overflow: hidden; background: var(--ink); color: white; transform: rotate(-1.4deg) scale(1.02); }
     .ticker-track { display: flex; width: max-content; gap: 26px; padding: 14px 0; animation: marquee 27s linear infinite; font-size: 12px; letter-spacing: .12em; font-weight: 650; }
     .ticker-track span { display: inline-flex; align-items: center; gap: 26px; }
@@ -138,9 +132,9 @@
     .works-section { padding: 1px 0 70px; background: var(--paper-deep); }
     .visual-series { position: relative; margin-top: 24px; padding: clamp(18px, 3vw, 32px); border: 1px solid rgba(17,28,45,.1); border-radius: 26px; box-shadow: 0 16px 38px rgba(17,28,45,.05); perspective: 1500px; transition: transform .5s, box-shadow .5s; }
     .visual-series:hover { transform: translateY(-3px); box-shadow: 0 22px 50px rgba(17,28,45,.09); }
-    .visual-series--lake { background: linear-gradient(135deg, #e6effb, #f5f3ed 74%); }
-    .visual-series--daily { background: linear-gradient(135deg, #f8e9df, #f5f3ed 74%); }
-    .visual-series--armor { background: linear-gradient(135deg, #dce6f7, #f5f3ed 74%); }
+    .visual-series--lake { background: #e6effb; }
+    .visual-series--daily { background: #f1e3d9; }
+    .visual-series--armor { background: #dce6f7; }
     .series-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; padding-bottom: 20px; margin-bottom: 20px; border-bottom: 1px solid rgba(17,28,45,.13); }
     .series-index { color: var(--blue); font-size: 10px; font-weight: 800; letter-spacing: .16em; }
     .series-title { margin: 8px 0 0; font: 500 clamp(25px, 3vw, 38px)/1.15 var(--serif); letter-spacing: -.04em; }
@@ -164,17 +158,12 @@
     .project:hover > img, .project:focus-visible > img { filter: saturate(1.12) contrast(1.02); }
     .project:hover .project-person, .project:focus-visible .project-person { animation: person-float 4s cubic-bezier(.35,.05,.2,1) infinite; filter: drop-shadow(0 16px 18px rgba(7,20,45,.32)); }
     .project:hover .project-depth-frame, .project:focus-visible .project-depth-frame { inset: 25px; transform: translateZ(42px) scale(.98); opacity: 1; }
-    .project::before { content: ""; position: absolute; z-index: 3; inset: 0; pointer-events: none; opacity: 0; background: radial-gradient(300px circle at var(--gx) var(--gy), rgba(255,255,255,.42), transparent 65%); mix-blend-mode: screen; transition: opacity .35s; transform: translateZ(55px); }
-    .project:hover::before, .project:focus-visible::before { opacity: 1; animation: photo-glint 4s ease-in-out infinite; }
-    .project::after { content: ""; position: absolute; z-index: 1; inset: 22% 0 0; background: linear-gradient(transparent 4%, rgba(5,14,29,.82)); pointer-events: none; transform: translateZ(30px); }
+    .project::before { content: ""; position: absolute; z-index: 1; inset: 0; pointer-events: none; background: rgba(5,14,29,.34); }
+    .project::after { display: none; }
     .project-caption { position: absolute; z-index: 4; left: 22px; right: 22px; bottom: 20px; color: white; transform: translateZ(58px); transition: transform .4s cubic-bezier(.2,.8,.2,1); }
     .project:hover .project-caption { transform: translate3d(0,-4px,68px); }
-    .project-type { display: inline-flex; padding: 6px 9px; margin-bottom: 11px; border: 1px solid rgba(255,255,255,.45); border-radius: 99px; background: rgba(12,22,41,.28); backdrop-filter: blur(8px); font-size: 9px; letter-spacing: .1em; }
     .project h3 { margin: 0 0 5px; font: 500 clamp(22px, 3vw, 34px)/1.2 var(--serif); }
     .project p { margin: 0; color: rgba(255,255,255,.78); font-size: 11px; }
-    .project-index { position: absolute; z-index: 4; top: 18px; right: 18px; display: grid; place-items: center; width: 39px; height: 39px; border: 1px solid rgba(255,255,255,.65); border-radius: 50%; color: white; font: italic 13px var(--serif); backdrop-filter: blur(8px); transform: translateZ(65px); transition: transform .45s, background .3s; }
-    .project:hover .project-index { transform: rotate(45deg); background: var(--orange); }
-    .project:hover .project-type { animation: label-rise 3.8s cubic-bezier(.2,.8,.2,1) both; }
     .works-footnote { margin: 23px 0 0; color: var(--muted); font-size: 11px; }
     .lightbox { width: min(92vw, 1080px); max-width: none; max-height: 90vh; padding: 18px; overflow: visible; border: 1px solid rgba(255,255,255,.2); border-radius: 24px; color: white; background: rgba(14,24,43,.94); box-shadow: 0 30px 100px rgba(0,0,0,.4); }
     .lightbox::backdrop { background: rgba(7,13,26,.82); backdrop-filter: blur(12px); }
@@ -208,19 +197,17 @@
     .reveal { opacity: 0; filter: blur(5px); transform: translateY(36px) scale(.985); transition: opacity 1s ease, filter 1s ease, transform 1.05s cubic-bezier(.2,.8,.2,1); }
     .reveal.is-visible { opacity: 1; filter: blur(0); transform: translateY(0) scale(1); }
     .delay-1 { transition-delay: .1s; } .delay-2 { transition-delay: .2s; } .delay-3 { transition-delay: .3s; }
-    .spotlight { background-image: radial-gradient(280px circle at var(--mx) var(--my), rgba(255,255,255,.18), transparent 70%); }
+    .spotlight { background-image: none; }
     @keyframes pulse { 50% { box-shadow: 0 0 0 9px rgba(255,105,59,0); } }
     @keyframes bob { 0%,100% { translate: 0 0; } 50% { translate: 0 -10px; } }
     @keyframes rotate { to { transform: rotate(360deg); } }
     @keyframes stretch { 0%,100% { transform: scaleY(.55); opacity: .45; } 50% { transform: scaleY(1); opacity: 1; } }
     @keyframes marquee { to { transform: translateX(-50%); } }
-    @keyframes guide-pop { 35% { transform: rotate(8deg) translateY(-8px) translateZ(54px); } 70% { transform: rotate(-7deg) translateY(2px) translateZ(40px); } }
+    @keyframes mascot-walk { 0%,12% { background-position: 0% 0%; } 28%,44% { background-position: 100% 0%; } 58%,72% { background-position: 0% 100%; } 84%,100% { background-position: 100% 100%; } }
     @keyframes lightbox-in { from { opacity: 0; transform: scale(.94) translateY(18px); } to { opacity: 1; transform: scale(1) translateY(0); } }
     @keyframes hero-enter { from { opacity: 0; transform: translateY(24px); filter: blur(5px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
     @keyframes stage-enter { from { opacity: 0; translate: 0 28px; scale: .96; filter: blur(8px); } to { opacity: 1; translate: 0 0; scale: 1; filter: blur(0); } }
     @keyframes person-float { 0%,100% { translate: 0 0; scale: 1; } 28% { translate: 0 -3px; scale: 1.012; } 62% { translate: 0 2px; scale: 1.018; } }
-    @keyframes photo-glint { 0%,100% { opacity: .35; } 50% { opacity: .9; } }
-    @keyframes label-rise { 0%,100% { transform: translateZ(58px) translateY(0); } 45% { transform: translateZ(68px) translateY(-3px); } }
 
     @media (max-width: 820px) {
       .shell { width: min(100% - 40px, 620px); }
@@ -252,12 +239,11 @@
       .meta-chip { padding: 7px 10px; font-size: 10px; }
       .portrait-stage { min-height: 375px; }
       .portrait-frame { width: 78%; height: 350px; border-width: 7px; box-shadow: 14px 15px 0 var(--orange), 0 16px 40px rgba(9,31,74,.2); }
-      .guide { right: 12px; bottom: 12px; grid-template-columns: 58px minmax(145px, 190px); gap: 8px; }
-      .guide-avatar { width: 58px; height: 62px; }
+      .guide { right: 12px; bottom: 12px; grid-template-columns: 76px minmax(145px, 190px); gap: 8px; }
+      .guide-avatar { width: 76px; height: 68px; }
+      .guide { --camera-x: 0px !important; --camera-y: 0px !important; }
       .guide-card { padding: 9px 11px; }
       .guide-say { min-height: 32px; margin: 5px 0 6px; font-size: 10px; }
-      .portrait-caption { right: 0; bottom: 27px; font-size: 10px; }
-      .orbit { width: 62px; height: 62px; top: 27px; right: 2%; }
       .section { padding: 76px 0; }
       .section-title-row { display: block; margin-bottom: 26px; }
       .section-aside { margin-top: 12px; text-align: left; }
@@ -291,9 +277,10 @@
     </div>
   </div>
   <main id="top">
+    <svg class="story-ink" id="story-ink" aria-hidden="true" preserveAspectRatio="none"><path id="story-ink-path"></path></svg>
     <section class="shell hero spotlight" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <div class="eyebrow"><i class="status-dot" aria-hidden="true"></i> PERSONAL PROFILE · 2026</div>
+        <div class="eyebrow">PERSONAL PROFILE · 2026</div>
         <h1 id="hero-title">你好，我是<span class="name">赵逸飞。</span></h1>
         <p class="hero-role">IP操盘手 <span>持续进步中</span></p>
         <p class="hero-intro">以「无限进步」为方向，在内容与个人品牌的探索里持续向前。现居北京，喜欢火锅，也喜欢出发去看新的风景。</p>
@@ -308,15 +295,14 @@
         </div>
       </div>
       <div class="portrait-stage" id="portrait-stage" aria-label="赵逸飞的半身照">
-        <div class="portrait-blob" aria-hidden="true"></div><div class="orbit" aria-hidden="true"></div><span class="spark" aria-hidden="true">✳</span>
+        <div class="portrait-blob" aria-hidden="true"></div>
         <div class="portrait-frame"><img src="assets/zhaoyifei-portrait.jpg" alt="赵逸飞身穿炭灰色外套的手绘插画半身肖像" fetchpriority="high"><span class="portrait-person" aria-hidden="true"><img src="assets/zhaoyifei-portrait.jpg" alt=""></span></div>
-        <div class="portrait-caption">无限进步 ↗</div>
       </div>
       <div class="scroll-note" aria-hidden="true">SCROLL TO EXPLORE<i></i></div>
     </section>
 
     <div class="ticker" aria-label="无限进步，持续探索">
-      <div class="ticker-track"><span>无限进步 <b>✳</b> IP操盘手 <b>✳</b> 北京 <b>✳</b> 火锅与旅行 <b>✳</b> 无限进步 <b>✳</b> IP操盘手 <b>✳</b> 北京 <b>✳</b> 火锅与旅行 <b>✳</b></span><span aria-hidden="true">无限进步 <b>✳</b> IP操盘手 <b>✳</b> 北京 <b>✳</b> 火锅与旅行 <b>✳</b> 无限进步 <b>✳</b> IP操盘手 <b>✳</b> 北京 <b>✳</b> 火锅与旅行 <b>✳</b></span></div>
+      <div class="ticker-track"><span>无限进步 <b>·</b> IP操盘手 <b>·</b> 北京 <b>·</b> 火锅与旅行 <b>·</b> 无限进步 <b>·</b> IP操盘手 <b>·</b> 北京 <b>·</b> 火锅与旅行 <b>✳</b></span><span aria-hidden="true">无限进步 <b>·</b> IP操盘手 <b>·</b> 北京 <b>·</b> 火锅与旅行 <b>·</b> 无限进步 <b>·</b> IP操盘手 <b>·</b> 北京 <b>·</b> 火锅与旅行 <b>✳</b></span></div>
     </div>
 
     <section class="shell section" id="profile">
@@ -341,19 +327,19 @@
           <div class="series-head"><div><span class="series-index">SERIES 01 / LAKESIDE</span><h3 class="series-title" id="lake-series-title">湖畔奇遇</h3></div><p class="series-description">先穿过湖岸与远景，再靠近角色。鼠标会牵引不同景深，人物独立浮动。</p></div>
           <div class="works-grid">
           <button class="project reveal" type="button" data-tilt data-lightbox data-title="湖畔相遇" data-kind="CHARACTER SCENE" data-description="骑士、海岸与火烈鸟构成的宽幅角色场景。">
-            <img src="assets/works/lakeside-knight.jpg" alt="骑士与火烈鸟相遇的湖畔插画" loading="lazy"><span class="project-person" aria-hidden="true"><img src="assets/works/lakeside-knight.jpg" alt="" loading="lazy"></span><span class="project-depth-frame" aria-hidden="true"></span><span class="project-index">01</span><div class="project-caption"><span class="project-type">CHARACTER SCENE</span><h3>湖畔相遇</h3><p>角色场景 · 插画叙事</p></div>
+            <img src="assets/works/lakeside-knight.jpg" alt="骑士与火烈鸟相遇的湖畔插画" loading="lazy"><span class="project-person" aria-hidden="true"><img src="assets/works/lakeside-knight.jpg" alt="" loading="lazy"></span><span class="project-depth-frame" aria-hidden="true"></span><div class="project-caption"><h3>湖畔相遇</h3><p>角色场景 · 插画叙事</p></div>
           </button>
           <button class="project reveal delay-1" type="button" data-tilt data-lightbox data-title="骑士角色近景" data-kind="CHARACTER STUDY" data-description="角色表情、眼镜与发型的近景细节。">
-            <img src="assets/works/knight-closeup.jpg" alt="蓝色衣着角色的头部近景插画" loading="lazy"><span class="project-person" aria-hidden="true"><img src="assets/works/knight-closeup.jpg" alt="" loading="lazy"></span><span class="project-depth-frame" aria-hidden="true"></span><span class="project-index">02</span><div class="project-caption"><span class="project-type">CHARACTER STUDY</span><h3>角色近景</h3><p>人物表情 · 造型细节</p></div>
+            <img src="assets/works/knight-closeup.jpg" alt="蓝色衣着角色的头部近景插画" loading="lazy"><span class="project-person" aria-hidden="true"><img src="assets/works/knight-closeup.jpg" alt="" loading="lazy"></span><span class="project-depth-frame" aria-hidden="true"></span><div class="project-caption"><h3>角色近景</h3><p>人物表情 · 造型细节</p></div>
           </button>
           <button class="project reveal delay-2" type="button" data-tilt data-lightbox data-title="湖边的火烈鸟" data-kind="SCENE DETAIL" data-description="湖岸水色与火烈鸟的局部场景。">
-            <img src="assets/works/flamingo-pair.jpg" alt="湖水中的两只火烈鸟插画" loading="lazy"><span class="project-person" aria-hidden="true"><img src="assets/works/flamingo-pair.jpg" alt="" loading="lazy"></span><span class="project-depth-frame" aria-hidden="true"></span><span class="project-index">03</span><div class="project-caption"><span class="project-type">SCENE DETAIL</span><h3>湖边的火烈鸟</h3><p>色彩片段 · 环境细节</p></div>
+            <img src="assets/works/flamingo-pair.jpg" alt="湖水中的两只火烈鸟插画" loading="lazy"><span class="project-person" aria-hidden="true"><img src="assets/works/flamingo-pair.jpg" alt="" loading="lazy"></span><span class="project-depth-frame" aria-hidden="true"></span><div class="project-caption"><h3>湖边的火烈鸟</h3><p>色彩片段 · 环境细节</p></div>
           </button>
           <button class="project reveal" type="button" data-tilt data-lightbox data-title="头盔与火烈鸟" data-kind="VISUAL PUN" data-description="将骑士头盔与火烈鸟形象结合的趣味画面。">
-            <img src="assets/works/helmet-flamingo.jpg" alt="戴着骑士头盔的火烈鸟插画" loading="lazy"><span class="project-person" aria-hidden="true"><img src="assets/works/helmet-flamingo.jpg" alt="" loading="lazy"></span><span class="project-depth-frame" aria-hidden="true"></span><span class="project-index">04</span><div class="project-caption"><span class="project-type">VISUAL PUN</span><h3>头盔与火烈鸟</h3><p>角色组合 · 趣味表达</p></div>
+            <img src="assets/works/helmet-flamingo.jpg" alt="戴着骑士头盔的火烈鸟插画" loading="lazy"><span class="project-person" aria-hidden="true"><img src="assets/works/helmet-flamingo.jpg" alt="" loading="lazy"></span><span class="project-depth-frame" aria-hidden="true"></span><div class="project-caption"><h3>头盔与火烈鸟</h3><p>角色组合 · 趣味表达</p></div>
           </button>
           <button class="project reveal delay-1" type="button" data-tilt data-lightbox data-title="湖畔场景草图" data-kind="PROCESS FRAME" data-description="线稿阶段的场景构图与人物动作探索。">
-            <img src="assets/works/lakeside-storyboard.jpg" alt="骑士与火烈鸟的线稿分镜草图" loading="lazy"><span class="project-person" aria-hidden="true"><img src="assets/works/lakeside-storyboard.jpg" alt="" loading="lazy"></span><span class="project-depth-frame" aria-hidden="true"></span><span class="project-index">05</span><div class="project-caption"><span class="project-type">PROCESS FRAME</span><h3>湖畔场景草图</h3><p>构图探索 · 过程素材</p></div>
+            <img src="assets/works/lakeside-storyboard.jpg" alt="骑士与火烈鸟的线稿分镜草图" loading="lazy"><span class="project-person" aria-hidden="true"><img src="assets/works/lakeside-storyboard.jpg" alt="" loading="lazy"></span><span class="project-depth-frame" aria-hidden="true"></span><div class="project-caption"><h3>湖畔场景草图</h3><p>构图探索 · 过程素材</p></div>
           </button>
           </div>
         </section>
@@ -361,13 +347,13 @@
           <div class="series-head"><div><span class="series-index">SERIES 02 / DAILY SCENES</span><h3 class="series-title" id="daily-series-title">盔甲骑士的日常</h3></div><p class="series-description">阅读、休憩与桌边的生活切片。悬停时背景后退、人物前移，像走进漫画格。</p></div>
           <div class="works-grid">
           <button class="project reveal delay-2" type="button" data-tilt data-lightbox data-title="盔甲骑士的午后" data-kind="VISUAL STORY" data-description="室内场景里的骑士、阅读与生活细节。">
-            <img src="assets/works/knight-studio.jpg" alt="盔甲骑士在工作室阅读的插画" loading="lazy"><span class="project-person" aria-hidden="true"><img src="assets/works/knight-studio.jpg" alt="" loading="lazy"></span><span class="project-depth-frame" aria-hidden="true"></span><span class="project-index">06</span><div class="project-caption"><span class="project-type">VISUAL STORY</span><h3>盔甲骑士的午后</h3><p>角色场景 · 日常叙事</p></div>
+            <img src="assets/works/knight-studio.jpg" alt="盔甲骑士在工作室阅读的插画" loading="lazy"><span class="project-person" aria-hidden="true"><img src="assets/works/knight-studio.jpg" alt="" loading="lazy"></span><span class="project-depth-frame" aria-hidden="true"></span><div class="project-caption"><h3>盔甲骑士的午后</h3><p>角色场景 · 日常叙事</p></div>
           </button>
           <button class="project reveal" type="button" data-tilt data-lightbox data-title="一张桌边小景" data-kind="STORY DETAIL" data-description="盔甲、咖啡与一只举着托盘的猴子。">
-            <img src="assets/works/monkey-cafe.jpg" alt="桌子下方的猴子和咖啡托盘插画" loading="lazy"><span class="project-person" aria-hidden="true"><img src="assets/works/monkey-cafe.jpg" alt="" loading="lazy"></span><span class="project-depth-frame" aria-hidden="true"></span><span class="project-index">07</span><div class="project-caption"><span class="project-type">STORY DETAIL</span><h3>一张桌边小景</h3><p>生活细节 · 角色互动</p></div>
+            <img src="assets/works/monkey-cafe.jpg" alt="桌子下方的猴子和咖啡托盘插画" loading="lazy"><span class="project-person" aria-hidden="true"><img src="assets/works/monkey-cafe.jpg" alt="" loading="lazy"></span><span class="project-depth-frame" aria-hidden="true"></span><div class="project-caption"><h3>一张桌边小景</h3><p>生活细节 · 角色互动</p></div>
           </button>
           <button class="project reveal delay-1" type="button" data-tilt data-lightbox data-title="盔甲里的阅读时刻" data-kind="CHARACTER MOMENT" data-description="骑士坐在椅子里阅读的角色片段。">
-            <img src="assets/works/armored-reader.jpg" alt="穿着盔甲的骑士坐着阅读插画" loading="lazy"><span class="project-person" aria-hidden="true"><img src="assets/works/armored-reader.jpg" alt="" loading="lazy"></span><span class="project-depth-frame" aria-hidden="true"></span><span class="project-index">08</span><div class="project-caption"><span class="project-type">CHARACTER MOMENT</span><h3>盔甲里的阅读时刻</h3><p>人物状态 · 角色切片</p></div>
+            <img src="assets/works/armored-reader.jpg" alt="穿着盔甲的骑士坐着阅读插画" loading="lazy"><span class="project-person" aria-hidden="true"><img src="assets/works/armored-reader.jpg" alt="" loading="lazy"></span><span class="project-depth-frame" aria-hidden="true"></span><div class="project-caption"><h3>盔甲里的阅读时刻</h3><p>人物状态 · 角色切片</p></div>
           </button>
           </div>
         </section>
@@ -375,19 +361,19 @@
           <div class="series-head"><div><span class="series-index">SERIES 03 / ARMOR UNIVERSE</span><h3 class="series-title" id="armor-series-title">盔甲宇宙</h3></div><p class="series-description">从人物造型、群像海报到故事尾声。逐层推进空间，角色会有各自的轻微动作。</p></div>
           <div class="works-grid">
           <button class="project reveal delay-2" type="button" data-tilt data-lightbox data-title="Ghosts in My Armor" data-kind="POSTER / CONCEPT" data-description="蓝色与橙红色盔甲人物构成的群像海报。">
-            <img src="assets/works/ghosts-in-armor.jpg" alt="蓝色与橙红色盔甲人物群像海报插画" loading="lazy"><span class="project-person" aria-hidden="true"><img src="assets/works/ghosts-in-armor.jpg" alt="" loading="lazy"></span><span class="project-depth-frame" aria-hidden="true"></span><span class="project-index">09</span><div class="project-caption"><span class="project-type">POSTER / CONCEPT</span><h3>Ghosts in My Armor</h3><p>群像概念 · 海报画面</p></div>
+            <img src="assets/works/ghosts-in-armor.jpg" alt="蓝色与橙红色盔甲人物群像海报插画" loading="lazy"><span class="project-person" aria-hidden="true"><img src="assets/works/ghosts-in-armor.jpg" alt="" loading="lazy"></span><span class="project-depth-frame" aria-hidden="true"></span><div class="project-caption"><h3>Ghosts in My Armor</h3><p>群像概念 · 海报画面</p></div>
           </button>
           <button class="project reveal" type="button" data-tilt data-lightbox data-title="兜帽角色造型" data-kind="CHARACTER LOOK" data-description="深色衣着、银色链饰与蓝白背景构成的造型画面。">
-            <img src="assets/works/hooded-character.jpg" alt="深色兜帽人物全身插画" loading="lazy"><span class="project-person" aria-hidden="true"><img src="assets/works/hooded-character.jpg" alt="" loading="lazy"></span><span class="project-depth-frame" aria-hidden="true"></span><span class="project-index">10</span><div class="project-caption"><span class="project-type">CHARACTER LOOK</span><h3>兜帽角色造型</h3><p>服装轮廓 · 人物视觉</p></div>
+            <img src="assets/works/hooded-character.jpg" alt="深色兜帽人物全身插画" loading="lazy"><span class="project-person" aria-hidden="true"><img src="assets/works/hooded-character.jpg" alt="" loading="lazy"></span><span class="project-depth-frame" aria-hidden="true"></span><div class="project-caption"><h3>兜帽角色造型</h3><p>服装轮廓 · 人物视觉</p></div>
           </button>
           <button class="project reveal delay-1" type="button" data-tilt data-lightbox data-title="群像概念" data-kind="CAST STUDY" data-description="不同盔甲角色组合成的群像视觉。">
-            <img src="assets/works/armored-cast.jpg" alt="多位盔甲角色组成的群像画面" loading="lazy"><span class="project-person" aria-hidden="true"><img src="assets/works/armored-cast.jpg" alt="" loading="lazy"></span><span class="project-depth-frame" aria-hidden="true"></span><span class="project-index">11</span><div class="project-caption"><span class="project-type">CAST STUDY</span><h3>群像概念</h3><p>角色组合 · 色彩系统</p></div>
+            <img src="assets/works/armored-cast.jpg" alt="多位盔甲角色组成的群像画面" loading="lazy"><span class="project-person" aria-hidden="true"><img src="assets/works/armored-cast.jpg" alt="" loading="lazy"></span><span class="project-depth-frame" aria-hidden="true"></span><div class="project-caption"><h3>群像概念</h3><p>角色组合 · 色彩系统</p></div>
           </button>
           <button class="project reveal delay-2" type="button" data-tilt data-lightbox data-title="故事的尾声" data-kind="ENDING FRAME" data-description="宝箱、粉色触手与手写对白构成的结尾画面。">
-            <img src="assets/works/treasure-chest.jpg" alt="宝箱和粉色触手的漫画结尾画面" loading="lazy"><span class="project-person" aria-hidden="true"><img src="assets/works/treasure-chest.jpg" alt="" loading="lazy"></span><span class="project-depth-frame" aria-hidden="true"></span><span class="project-index">12</span><div class="project-caption"><span class="project-type">ENDING FRAME</span><h3>故事的尾声</h3><p>漫画画面 · 叙事收束</p></div>
+            <img src="assets/works/treasure-chest.jpg" alt="宝箱和粉色触手的漫画结尾画面" loading="lazy"><span class="project-person" aria-hidden="true"><img src="assets/works/treasure-chest.jpg" alt="" loading="lazy"></span><span class="project-depth-frame" aria-hidden="true"></span><div class="project-caption"><h3>故事的尾声</h3><p>漫画画面 · 叙事收束</p></div>
           </button>
           <button class="project reveal" type="button" data-tilt data-lightbox data-title="盔甲细节" data-kind="DETAIL FRAME" data-description="红色盔甲与蓝色群像之间的视觉细节。">
-            <img src="assets/works/armor-detail.jpg" alt="红色盔甲人物的局部特写" loading="lazy"><span class="project-person" aria-hidden="true"><img src="assets/works/armor-detail.jpg" alt="" loading="lazy"></span><span class="project-depth-frame" aria-hidden="true"></span><span class="project-index">13</span><div class="project-caption"><span class="project-type">DETAIL FRAME</span><h3>盔甲细节</h3><p>色彩对比 · 角色特写</p></div>
+            <img src="assets/works/armor-detail.jpg" alt="红色盔甲人物的局部特写" loading="lazy"><span class="project-person" aria-hidden="true"><img src="assets/works/armor-detail.jpg" alt="" loading="lazy"></span><span class="project-depth-frame" aria-hidden="true"></span><div class="project-caption"><h3>盔甲细节</h3><p>色彩对比 · 角色特写</p></div>
           </button>
           </div>
         </section>
@@ -404,8 +390,8 @@
     </dialog>
 
     <aside class="guide" id="guide" aria-label="赵逸飞的页面向导">
-      <div class="guide-avatar" aria-hidden="true"><img src="assets/mascot-zhaoyifei.png" alt=""></div>
-      <div class="guide-card"><div class="guide-kicker"><span>逸飞的页面向导</span><i>● LIVE</i></div><p class="guide-say" id="guide-say" aria-live="polite">嗨，我是赵逸飞。往下走，看看我的个人名片。</p><button class="guide-next" id="guide-next" type="button">带我逛逛 <span aria-hidden="true">↘</span></button></div>
+      <div class="guide-avatar" aria-hidden="true"></div>
+      <div class="guide-card"><div class="guide-kicker">逸飞的页面向导</div><p class="guide-say" id="guide-say" aria-live="polite">嗨，我是赵逸飞。往下走，看看我的个人名片。</p><button class="guide-next" id="guide-next" type="button">带我逛逛 <span aria-hidden="true">↘</span></button></div>
     </aside>
 
     <section class="contact-section spotlight" id="contact">
@@ -429,11 +415,15 @@
     const finePointer = window.matchMedia('(pointer: fine)').matches;
 
     const progressBar = document.querySelector('#progress-bar');
+    const storyInk = document.querySelector('#story-ink');
+    const storyPath = document.querySelector('#story-ink-path');
     let scrollFrame = 0;
     const paintProgress = () => {
       scrollFrame = 0;
       const range = document.documentElement.scrollHeight - window.innerHeight;
-      progressBar.style.width = `${range > 0 ? (window.scrollY / range) * 100 : 0}%`;
+      const progress = range > 0 ? window.scrollY / range : 0;
+      progressBar.style.width = `${progress * 100}%`;
+      if (storyPath.dataset.length) storyPath.style.strokeDashoffset = `${Number(storyPath.dataset.length) * (1 - progress)}`;
     };
     const scheduleProgress = () => {
       if (!scrollFrame) scrollFrame = window.requestAnimationFrame(paintProgress);
@@ -442,10 +432,46 @@
     window.addEventListener('resize', scheduleProgress, { passive: true });
     paintProgress();
 
+    const drawStoryPath = () => {
+      const main = document.querySelector('main');
+      const rect = main.getBoundingClientRect();
+      const width = main.clientWidth;
+      const height = main.scrollHeight;
+      storyInk.setAttribute('viewBox', `0 0 ${width} ${height}`);
+      const point = (selector, xRatio, yRatio = .5) => {
+        const el = document.querySelector(selector);
+        const box = el.getBoundingClientRect();
+        return [box.left + box.width * xRatio - rect.left, box.top + box.height * yRatio - rect.top + window.scrollY];
+      };
+      const pts = [point('#portrait-stage', .52, .48), point('#profile .about-note', .52, .65), point('#works .visual-series', .82, .48), point('#works .visual-series--armor', .18, .5), point('#contact .contact-inner', .22, .45)];
+      let d = `M ${pts[0][0]} ${pts[0][1]}`;
+      for (let i = 0; i < pts.length - 1; i++) {
+        const [x0,y0] = pts[i], [x1,y1] = pts[i+1], bend = Math.min(width * .22, Math.abs(x1-x0) * .55 + 45);
+        const direction = x1 >= x0 ? 1 : -1;
+        d += ` C ${x0 + direction*bend} ${y0 + (y1-y0)*.28}, ${x1 - direction*bend} ${y0 + (y1-y0)*.72}, ${x1} ${y1}`;
+      }
+      storyPath.setAttribute('d', d);
+      const length = storyPath.getTotalLength();
+      storyPath.dataset.length = length;
+      storyPath.style.strokeDasharray = `${length}`;
+      paintProgress();
+    };
+    drawStoryPath();
+    window.addEventListener('resize', drawStoryPath, { passive: true });
+    if (document.fonts?.ready) document.fonts.ready.then(drawStoryPath);
+
     const guide = document.querySelector('#guide');
     const guideSay = document.querySelector('#guide-say');
     const guideNext = document.querySelector('#guide-next');
     const guideAvatar = document.querySelector('.guide-avatar');
+    let walkPause;
+    const animateWalk = () => {
+      if (reduceMotion) return;
+      guide.classList.add('is-walking');
+      clearTimeout(walkPause);
+      walkPause = setTimeout(() => guide.classList.remove('is-walking'), 260);
+    };
+    window.addEventListener('scroll', animateWalk, { passive: true });
     guideAvatar.addEventListener('pointermove', (event) => {
       const rect = guideAvatar.getBoundingClientRect();
       guideAvatar.style.setProperty('--gaze-x', `${((event.clientX - rect.left) / rect.width - .5) * 18}deg`);
@@ -458,6 +484,7 @@
       { id: 'works', say: '这些是我收集的角色与故事视觉，点开卡片可以近距离看。', action: '联系我', next: '#contact' },
       { id: 'contact', say: '想认识我或聊聊合作？微信和电话都在这里。', action: '回到顶部', next: '#top' }
     ];
+    const cameraStops = [[0,0],[-34,-18],[-74,-8],[-28,-34]];
     let guideIndex = 0;
     guideNext.addEventListener('click', () => document.querySelector(guideStops[guideIndex].next)?.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' }));
     if ('IntersectionObserver' in window) {
@@ -467,10 +494,11 @@
         const nextIndex = guideStops.findIndex((stop) => stop.id === visible.target.id);
         if (nextIndex < 0 || nextIndex === guideIndex) return;
         guideIndex = nextIndex;
+        guide.style.setProperty('--camera-x', `${cameraStops[nextIndex][0]}px`);
+        guide.style.setProperty('--camera-y', `${cameraStops[nextIndex][1]}px`);
         guideSay.textContent = guideStops[nextIndex].say;
         guideNext.innerHTML = `${guideStops[nextIndex].action} <span aria-hidden="true">↘</span>`;
-        guide.classList.remove('is-speaking');
-        requestAnimationFrame(() => guide.classList.add('is-speaking'));
+        animateWalk();
       }, { threshold: [.35, .6] });
       guideStops.forEach((stop) => { const section = document.getElementById(stop.id); if (section) guideObserver.observe(section); });
     }
