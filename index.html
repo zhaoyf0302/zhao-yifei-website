@@ -10,9 +10,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,650;12..96,750&family=Noto+Sans+SC:wght@400;500;600;700;800&family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/avatar-hero.css">
+  <link rel="stylesheet" href="assets/profile-vibe.css">
   <script defer src="assets/avatar-renderer.js"></script>
   <script defer src="assets/avatar/original-eyes/pose-mesh.js"></script>
   <script defer src="assets/avatar-hero.js"></script>
+  <script defer src="assets/profile-vibe.js"></script>
   <style>
     :root {
       --paper: #f5f3ed;
@@ -265,6 +267,27 @@
           </dl>
           <a class="avatar-link" href="#works">看看我的作品 <span aria-hidden="true">↗</span></a>
         </section>
+      </div>
+    </section>
+
+    <section class="profile-vibe" id="profile-vibe" aria-labelledby="profile-vibe-title">
+      <div class="vibe-stage">
+        <h2 class="vibe-title" id="profile-vibe-title" aria-label="Vibe">
+          <span aria-hidden="true">V</span><span aria-hidden="true">I</span><span aria-hidden="true">B</span><span aria-hidden="true">E</span>
+        </h2>
+        <div class="vibe-character" aria-hidden="true">
+          <div class="vibe-mirror">
+            <img class="vibe-portrait" src="assets/profile-vibe/yifei.webp" width="1672" height="941"
+                 data-eyes="785,310,32,9,.07;912,307,32,9,-.08" alt="" loading="lazy" decoding="async">
+            <canvas class="vibe-eyes"></canvas>
+          </div>
+        </div>
+        <img class="vibe-prop vibe-prop--eye" src="assets/profile-vibe/plush-eye.webp" alt="" loading="lazy" decoding="async">
+        <img class="vibe-prop vibe-prop--pixel" src="assets/profile-vibe/pixel-pal.webp" alt="" loading="lazy" decoding="async">
+      </div>
+      <div class="vibe-caption">
+        <p>赵逸飞 <span aria-hidden="true">/</span> 个人 IP 与内容创作</p>
+        <button class="vibe-play" type="button" hidden>重播动画 <span aria-hidden="true">↻</span></button>
       </div>
     </section>
 
