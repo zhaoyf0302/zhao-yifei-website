@@ -92,8 +92,9 @@
     .scroll-note i { width: 1px; height: 24px; background: var(--blue); transform-origin: top; animation: stretch 1.6s ease-in-out infinite; }
 
     .guide { position: fixed; z-index: 25; right: max(22px, calc((100vw - 1220px)/2)); bottom: 24px; display: grid; grid-template-columns: 98px minmax(170px, 230px); align-items: end; gap: 11px; pointer-events: none; perspective: 900px; transition: transform .8s cubic-bezier(.2,.8,.2,1); transform: translate3d(var(--camera-x,0px),var(--camera-y,0px),0); }
-    .guide-avatar { width: 98px; height: 88px; padding: 0; border: 0; border-radius: 0; background-image: url("assets/mascot-zhaoyifei-frames-3d.png"); background-repeat: no-repeat; background-size: 200% 200%; background-position: 100% 100%; filter: drop-shadow(2px 3px 0 rgba(17,28,45,.18)); pointer-events: auto; transform: perspective(500px) rotateX(var(--gaze-y,0deg)) rotateY(var(--gaze-x,0deg)); transition: transform .35s cubic-bezier(.2,.8,.2,1); overflow: visible; }
-    .guide.is-walking .guide-avatar { animation: mascot-walk 1.8s steps(1,end) infinite; }
+    .guide-avatar { width: 98px; height: 88px; padding: 0; border: 0; border-radius: 0; background-image: url("assets/mascot-zhaoyifei-frames-3d.png"); background-repeat: no-repeat; background-size: 200% 200%; background-position: 100% 100%; filter: drop-shadow(2px 3px 0 rgba(17,28,45,.18)); pointer-events: auto; transform: perspective(500px) rotateX(var(--gaze-y,0deg)) rotateY(var(--gaze-x,0deg)); transition: transform .35s cubic-bezier(.2,.8,.2,1); overflow: visible; animation: mascot-idle 4.8s steps(1,end) infinite; }
+    .guide.is-walking .guide-avatar { animation: mascot-walk 1.5s steps(1,end) infinite; }
+    .guide { animation: camera-drift 4.8s ease-in-out infinite; }
     .guide-card { padding: 4px 0 6px; color: var(--ink); pointer-events: auto; transition: transform .4s; }
     .guide-kicker { color: var(--blue-deep); font-size: 9px; letter-spacing: .11em; font-weight: 800; }
     .guide-say { min-height: 36px; margin: 7px 0 6px; font-size: 11px; line-height: 1.65; }
@@ -203,7 +204,9 @@
     @keyframes rotate { to { transform: rotate(360deg); } }
     @keyframes stretch { 0%,100% { transform: scaleY(.55); opacity: .45; } 50% { transform: scaleY(1); opacity: 1; } }
     @keyframes marquee { to { transform: translateX(-50%); } }
+    @keyframes mascot-idle { 0%,12% { background-position: 0% 0%; } 23%,35% { background-position: 100% 0%; } 48%,58% { background-position: 0% 100%; } 70%,100% { background-position: 100% 100%; } }
     @keyframes mascot-walk { 0%,12% { background-position: 0% 0%; } 28%,44% { background-position: 100% 0%; } 58%,72% { background-position: 0% 100%; } 84%,100% { background-position: 100% 100%; } }
+    @keyframes camera-drift { 0%,100% { translate: 0 0; } 28% { translate: -2px -3px; } 58% { translate: 2px 1px; } 78% { translate: 0 -1px; } }
     @keyframes lightbox-in { from { opacity: 0; transform: scale(.94) translateY(18px); } to { opacity: 1; transform: scale(1) translateY(0); } }
     @keyframes hero-enter { from { opacity: 0; transform: translateY(24px); filter: blur(5px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
     @keyframes stage-enter { from { opacity: 0; translate: 0 28px; scale: .96; filter: blur(8px); } to { opacity: 1; translate: 0 0; scale: 1; filter: blur(0); } }
