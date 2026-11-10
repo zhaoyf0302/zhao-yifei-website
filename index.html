@@ -95,10 +95,10 @@
     .scroll-note { position: absolute; bottom: 9px; left: 50%; display: flex; flex-direction: column; align-items: center; gap: 7px; color: var(--muted); font-size: 9px; letter-spacing: .18em; transform: translateX(-50%); }
     .scroll-note i { width: 1px; height: 24px; background: var(--blue); transform-origin: top; animation: stretch 1.6s ease-in-out infinite; }
 
-    .guide { position: fixed; z-index: 25; right: max(22px, calc((100vw - 1220px)/2)); bottom: 24px; display: grid; grid-template-columns: 58px minmax(170px, 230px); align-items: end; gap: 11px; pointer-events: none; perspective: 900px; }
-    .guide-avatar { width: 58px; height: 58px; padding: 3px; border: 2px solid var(--ink); border-radius: 19px 19px 19px 6px; background: var(--orange); box-shadow: 5px 6px 0 var(--ink); pointer-events: auto; transform: perspective(500px) rotateX(var(--gaze-y,0deg)) rotateY(var(--gaze-x,0deg)) rotate(-5deg) translateZ(36px); transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s; overflow: hidden; }
-    .guide-avatar:hover { transform: rotate(0) translateY(-7px) translateZ(50px) scale(1.08); box-shadow: 8px 10px 0 var(--ink); }
-    .guide-avatar img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: 50% 18%; border-radius: 14px 14px 14px 4px; }
+    .guide { position: fixed; z-index: 25; right: max(22px, calc((100vw - 1220px)/2)); bottom: 24px; display: grid; grid-template-columns: 82px minmax(170px, 230px); align-items: end; gap: 11px; pointer-events: none; perspective: 900px; }
+    .guide-avatar { width: 82px; height: 88px; padding: 0; border: 0; border-radius: 0; background: transparent; filter: drop-shadow(4px 7px 0 rgba(17,28,45,.2)); pointer-events: auto; transform: perspective(500px) rotateX(var(--gaze-y,0deg)) rotateY(var(--gaze-x,0deg)) rotate(-5deg) translateZ(36px); transition: transform .35s cubic-bezier(.2,.8,.2,1), filter .35s; overflow: visible; }
+    .guide-avatar:hover { transform: perspective(500px) rotateX(var(--gaze-y,0deg)) rotateY(var(--gaze-x,0deg)) rotate(0) translateY(-7px) translateZ(50px) scale(1.08); filter: drop-shadow(6px 11px 0 rgba(23,105,255,.26)); }
+    .guide-avatar img { width: 100%; height: 100%; display: block; object-fit: contain; object-position: center bottom; border-radius: 0; }
     .guide-card { padding: 12px 14px; border: 2px solid var(--ink); border-radius: 15px 15px 4px 15px; color: var(--ink); background: var(--paper); box-shadow: 5px 6px 0 var(--blue); transform: rotateY(-9deg) translateZ(24px); pointer-events: auto; transition: transform .35s, box-shadow .35s; }
     .guide-card:hover { transform: rotateY(0) translateY(-4px) translateZ(42px); box-shadow: 8px 10px 0 var(--orange); }
     .guide-kicker { display: flex; justify-content: space-between; color: var(--blue-deep); font-size: 9px; letter-spacing: .11em; font-weight: 800; }
@@ -252,8 +252,8 @@
       .meta-chip { padding: 7px 10px; font-size: 10px; }
       .portrait-stage { min-height: 375px; }
       .portrait-frame { width: 78%; height: 350px; border-width: 7px; box-shadow: 14px 15px 0 var(--orange), 0 16px 40px rgba(9,31,74,.2); }
-      .guide { right: 12px; bottom: 12px; grid-template-columns: 46px minmax(145px, 190px); gap: 8px; }
-      .guide-avatar { width: 46px; height: 46px; border-radius: 15px 15px 15px 5px; }
+      .guide { right: 12px; bottom: 12px; grid-template-columns: 58px minmax(145px, 190px); gap: 8px; }
+      .guide-avatar { width: 58px; height: 62px; }
       .guide-card { padding: 9px 11px; }
       .guide-say { min-height: 32px; margin: 5px 0 6px; font-size: 10px; }
       .portrait-caption { right: 0; bottom: 27px; font-size: 10px; }
@@ -404,7 +404,7 @@
     </dialog>
 
     <aside class="guide" id="guide" aria-label="赵逸飞的页面向导">
-      <div class="guide-avatar" aria-hidden="true"><img src="assets/zhaoyifei-portrait.jpg" alt=""></div>
+      <div class="guide-avatar" aria-hidden="true"><img src="assets/mascot-zhaoyifei.png" alt=""></div>
       <div class="guide-card"><div class="guide-kicker"><span>逸飞的页面向导</span><i>● LIVE</i></div><p class="guide-say" id="guide-say" aria-live="polite">嗨，我是赵逸飞。往下走，看看我的个人名片。</p><button class="guide-next" id="guide-next" type="button">带我逛逛 <span aria-hidden="true">↘</span></button></div>
     </aside>
 

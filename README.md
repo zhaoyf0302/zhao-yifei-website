@@ -18,6 +18,7 @@
 
 - `index.html`：页面结构、样式与交互逻辑
 - `assets/zhaoyifei-portrait.jpg`：统一插画风格的个人半身肖像
+- `assets/mascot-zhaoyifei.png`：依据本人照片创作的软萌 3D 耳机角色，用作互动页面向导
 - `assets/works/`：作品展示图片（压缩 JPEG）
 
 编辑 `index.html` 和 `assets/` 中的图片即可更新页面。
