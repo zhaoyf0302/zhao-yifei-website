@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f5f3ed">
+  <meta name="theme-color" content="#f4f1e6">
   <meta name="description" content="赵逸飞的个人简历与视觉内容作品。IP操盘手，持续进步。">
   <title>赵逸飞 — IP操盘手</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,21 +11,26 @@
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,650;12..96,750&family=Noto+Sans+SC:wght@400;500;600;700;800&family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/avatar-hero.css">
   <link rel="stylesheet" href="assets/profile-vibe.css">
+  <link rel="stylesheet" href="assets/profile-frame.css">
+  <link rel="stylesheet" href="assets/profile-stories.css">
   <script defer src="assets/avatar-renderer.js"></script>
   <script defer src="assets/avatar/original-eyes/pose-mesh.js"></script>
   <script defer src="assets/avatar-hero.js"></script>
+  <script defer src="assets/avatar-gaze.js"></script>
   <script defer src="assets/profile-vibe.js"></script>
+  <script defer src="assets/profile-frame.js"></script>
+  <script defer src="assets/profile-stories.js"></script>
   <style>
     :root {
-      --paper: #f5f3ed;
-      --paper-deep: #eae8df;
-      --ink: #111c2d;
-      --muted: #687180;
-      --blue: #1769ff;
-      --blue-deep: #0c3d9a;
-      --orange: #ff693b;
-      --mint: #c6f2df;
-      --line: rgba(17, 28, 45, .15);
+      --paper: #f4f1e6;
+      --paper-deep: #e7eadc;
+      --ink: #25382d;
+      --muted: #59685b;
+      --moss: #49634d;
+      --forest: #344d3a;
+      --clay: #aa694f;
+      --sage: #d9e3cf;
+      --line: #7e927354;
       --serif: "Bricolage Grotesque", "ZCOOL KuaiLe", "Iowan Old Style", "Songti SC", Georgia, serif;
       --sans: "Noto Sans SC", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
       --mx: 50%;
@@ -35,10 +40,10 @@
     html { scroll-behavior: smooth; scroll-padding-top: 86px; }
     body { margin: 0; color: var(--ink); background: var(--paper); font-family: var(--sans); overflow-x: clip; }
     .scroll-progress { position: fixed; z-index: 30; inset: 0 0 auto; height: 3px; background: transparent; }
-    .scroll-progress span { display: block; width: 0; height: 100%; background: var(--orange); }
-    .pointer-follower { position: fixed; z-index: 40; top: 0; left: 0; width: 38px; height: 38px; display: grid; place-items: center; border: 1px solid rgba(23,105,255,.8); border-radius: 50%; color: white; background: rgba(23,105,255,.16); backdrop-filter: blur(4px); pointer-events: none; opacity: 0; transform: translate3d(-100px,-100px,0) scale(.65); transition: width .25s, height .25s, opacity .2s, background .25s, border-color .25s; font-size: 8px; letter-spacing: .04em; font-weight: 800; }
+    .scroll-progress span { display: block; width: 0; height: 100%; background: var(--clay); }
+    .pointer-follower { position: fixed; z-index: 40; top: 0; left: 0; width: 38px; height: 38px; display: grid; place-items: center; border: 1px solid #4b644ed9; border-radius: 50%; color: white; background: #54705529; backdrop-filter: blur(4px); pointer-events: none; opacity: 0; transform: translate3d(-100px,-100px,0) scale(.65); transition: width .25s, height .25s, opacity .2s, background .25s, border-color .25s; font-size: 8px; letter-spacing: .04em; font-weight: 800; }
     .pointer-follower.is-on { opacity: 1; }
-    .pointer-follower.is-active { width: 76px; height: 76px; border-color: var(--orange); background: rgba(255,105,59,.85); }
+    .pointer-follower.is-active { width: 76px; height: 76px; border-color: var(--clay); background: #8d4e3bd9; }
     .pointer-follower.is-active::after { content: "VIEW"; }
     .cursor-ready, .cursor-ready a, .cursor-ready button { cursor: none; }
     body::before { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 8; opacity: .14; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.13'/%3E%3C/svg%3E"); }
@@ -46,22 +51,22 @@
     button { font: inherit; }
     .shell { width: min(1220px, calc(100% - 64px)); margin: 0 auto; position: relative; z-index: 2; }
     main { position: relative; overflow-x: clip; }
-    .topbar { position: sticky; top: 0; z-index: 10; background: rgba(245,243,237,.88); backdrop-filter: blur(18px); border-bottom: 1px solid var(--line); }
+    .topbar { position: sticky; top: 0; z-index: 10; background: #f4f1e6ed; backdrop-filter: blur(18px); border-bottom: 1px solid var(--line); }
     .topbar-inner { height: 76px; display: flex; align-items: center; justify-content: space-between; }
     .brand { display: inline-flex; align-items: center; gap: 11px; text-decoration: none; font-weight: 750; letter-spacing: .04em; }
-    .brand-mark { display: grid; place-items: center; width: 36px; height: 36px; color: white; background: var(--blue); border-radius: 50%; font: 18px var(--serif); box-shadow: 4px 4px 0 var(--orange); transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s; }
-    .brand:hover .brand-mark { transform: rotate(-14deg) scale(1.08); box-shadow: 7px 5px 0 var(--orange); }
+    .brand-mark { display: grid; place-items: center; width: 36px; height: 36px; color: white; background: var(--moss); border-radius: 50%; font: 18px var(--serif); box-shadow: 4px 4px 0 var(--clay); transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s; }
+    .brand:hover .brand-mark { transform: rotate(-14deg) scale(1.08); box-shadow: 7px 5px 0 var(--clay); }
     .nav { display: flex; align-items: center; gap: clamp(16px, 3vw, 38px); color: var(--muted); font-size: 13px; }
     .nav a { text-decoration: none; position: relative; padding: 10px 0; transition: color .2s; }
-    .nav a::after { content: ""; position: absolute; left: 0; right: 100%; bottom: 5px; height: 2px; background: var(--orange); transition: right .28s cubic-bezier(.2,.8,.2,1); }
-    .nav a:hover, .nav a:focus-visible { color: var(--blue); }
+    .nav a::after { content: ""; position: absolute; left: 0; right: 100%; bottom: 5px; height: 2px; background: var(--clay); transition: right .28s cubic-bezier(.2,.8,.2,1); }
+    .nav a:hover, .nav a:focus-visible { color: var(--moss); }
     .nav a:hover::after, .nav a:focus-visible::after { right: 0; }
     .nav-cta { padding: 11px 17px !important; color: white !important; border-radius: 99px; background: var(--ink); transition: background .2s, transform .2s !important; }
     .nav-cta::after { display: none; }
-    .nav-cta:hover { background: var(--blue); transform: translateY(-2px); }
+    .nav-cta:hover { background: var(--moss); transform: translateY(-2px); }
 
-    .pill { display: inline-flex; align-items: center; justify-content: center; gap: 11px; padding: 14px 20px; border-radius: 99px; background: var(--blue); color: white; text-decoration: none; font-size: 13px; font-weight: 700; box-shadow: 0 8px 22px rgba(23,105,255,.2); transition: transform .24s, box-shadow .24s, background .24s; }
-    .pill:hover, .pill:focus-visible { background: var(--blue-deep); transform: translateY(-4px); box-shadow: 0 14px 28px rgba(23,105,255,.28); }
+    .pill { display: inline-flex; align-items: center; justify-content: center; gap: 11px; padding: 14px 20px; border-radius: 99px; background: var(--moss); color: white; text-decoration: none; font-size: 13px; font-weight: 700; box-shadow: 0 8px 22px #3f57472b; transition: transform .24s, box-shadow .24s, background .24s; }
+    .pill:hover, .pill:focus-visible { background: var(--forest); transform: translateY(-4px); box-shadow: 0 14px 28px #3f57473d; }
     .pill .arrow { display: inline-block; transition: transform .24s; }
     .pill:hover .arrow { transform: translate(3px,-3px); }
     .guide { position: fixed; z-index: 25; right: max(22px, calc((100vw - 1220px)/2)); bottom: 24px; display: grid; grid-template-columns: 98px minmax(170px, 230px); align-items: end; gap: 11px; pointer-events: none; perspective: 900px; transition: transform .8s cubic-bezier(.2,.8,.2,1); transform: translate3d(var(--camera-x,0px),var(--camera-y,0px),0); }
@@ -69,104 +74,132 @@
     .guide.is-walking .guide-avatar { animation: mascot-walk 1.5s steps(1,end) infinite; }
     .guide { animation: camera-drift 4.8s ease-in-out infinite; }
     .guide-card { padding: 4px 0 6px; color: var(--ink); pointer-events: auto; transition: transform .4s; }
-    .guide-kicker { color: var(--blue-deep); font-size: 9px; letter-spacing: .11em; font-weight: 800; }
+    .guide-kicker { color: var(--forest); font-size: 9px; letter-spacing: .11em; font-weight: 800; }
     .guide-say { min-height: 36px; margin: 7px 0 6px; font-size: 11px; line-height: 1.65; }
-    .guide-next { display: inline-flex; align-items: center; gap: 6px; padding: 0 0 3px; border: 0; border-bottom: 1px solid var(--orange); color: var(--blue); background: none; font-size: 10px; font-weight: 800; cursor: pointer; }
-    .guide-next:hover { color: var(--orange); }
+    .guide-next { display: inline-flex; align-items: center; gap: 6px; padding: 0 0 3px; border: 0; border-bottom: 1px solid var(--clay); color: var(--moss); background: none; font-size: 10px; font-weight: 800; cursor: pointer; }
+    .guide-next:hover { color: var(--clay); }
 
     .story-ink { position: absolute; z-index: 1; inset: 0 auto 0 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
-    .story-ink path { fill: none; stroke: #1769ff; stroke-width: 3.2; stroke-linecap: round; stroke-linejoin: round; opacity: .24; vector-effect: non-scaling-stroke; }
-    .ticker { overflow: hidden; background: var(--ink); color: white; transform: rotate(-1.4deg) scale(1.02); }
-    .ticker-track { display: flex; width: max-content; gap: 26px; padding: 14px 0; animation: marquee 27s linear infinite; font-size: 12px; letter-spacing: .12em; font-weight: 650; }
+    .story-ink path { fill: none; stroke: #49634d; stroke-width: 3.2; stroke-linecap: round; stroke-linejoin: round; opacity: .24; vector-effect: non-scaling-stroke; }
+    .ticker { overflow: hidden; border-block: 1px solid var(--line); background: var(--sage); color: var(--forest); }
+    .ticker-track { display: flex; width: max-content; gap: 26px; padding: 9px 0; animation: marquee 27s linear infinite; font-size: 11px; letter-spacing: .12em; font-weight: 650; }
     .ticker-track span { display: inline-flex; align-items: center; gap: 26px; }
-    .ticker-track b { color: var(--orange); font-size: 18px; }
+    .ticker-track b { color: var(--clay); font-size: 18px; }
 
-    .section { padding: 106px 0; border-bottom: 1px solid var(--line); }
-    .section-kicker { display: flex; align-items: center; gap: 10px; color: var(--blue); font-size: 11px; font-weight: 750; letter-spacing: .16em; text-transform: uppercase; }
-    .section-kicker::before { content: ""; width: 24px; height: 2px; background: var(--orange); }
-    .section-title-row { display: flex; justify-content: space-between; align-items: end; gap: 28px; margin: 16px 0 38px; }
+    .section { padding: clamp(40px, 6vw, 84px) 0; border-bottom: 1px solid var(--line); }
+    .section-kicker { display: flex; align-items: center; gap: 10px; color: var(--moss); font-size: 11px; font-weight: 750; letter-spacing: .16em; text-transform: uppercase; }
+    .section-kicker::before { content: ""; width: 24px; height: 2px; background: var(--clay); }
     .section-title { margin: 0; font: 500 clamp(38px, 5vw, 60px)/1.12 var(--serif); letter-spacing: -.06em; }
-    .section-aside { max-width: 300px; margin: 0 0 5px; color: var(--muted); font-size: 12px; line-height: 1.8; text-align: right; }
-    .about-layout { display: grid; grid-template-columns: .85fr 1.15fr; gap: 66px; align-items: start; }
-    .about-note { position: relative; padding: 27px 28px 31px; background: var(--mint); border-radius: 22px 22px 22px 4px; transform: rotate(-1deg); transition: transform .3s; }
-    .about-note:hover { transform: rotate(0) translateY(-5px); }
-    .about-note::after { content: ""; position: absolute; left: 30px; bottom: -11px; width: 22px; height: 22px; background: var(--mint); transform: rotate(45deg); }
-    .about-note .quote-mark { color: var(--blue); font: 48px/.7 var(--serif); }
-    .about-note p { margin: 18px 0 0; font: 500 23px/1.65 var(--serif); letter-spacing: -.03em; }
-    .profile-grid { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
-    .profile-item { min-height: 110px; padding: 20px 22px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); transition: background .25s; }
-    .profile-item:hover { background: rgba(255,255,255,.68); }
+    .profile-overview { position: relative; z-index: 2; padding: clamp(34px, 5.3vw, 78px) 0; background: #e4eadb; }
+    .chapter-heading { display: flex; justify-content: space-between; align-items: end; gap: 16px 32px; margin-block: 0 clamp(16px, 2.6vw, 32px); }
+    .chapter-heading > p { max-width: 32em; margin: 0; color: var(--muted); font-size: clamp(12px, 1.2vw, 16px); line-height: 1.75; }
+    .chapter-kicker { margin: 0 0 7px; color: var(--moss); font-size: 10px; font-weight: 750; letter-spacing: .16em; }
+    .profile-overview-grid { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: clamp(14px, 2.3vw, 30px); align-items: stretch; }
+    .about-layout { display: grid; gap: 10px; min-width: 0; }
+    .about-note { position: relative; padding: clamp(15px, 2vw, 26px); background: var(--forest); color: #f8f2df; border-radius: 13px; }
+    .about-note .quote-mark { color: #cda98b; font: 36px/.7 var(--serif); }
+    .about-note p { margin: 8px 0 0; font: 500 clamp(18px, 2.1vw, 28px)/1.5 var(--serif); letter-spacing: -.03em; }
+    .profile-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px; }
+    .profile-item { min-height: 83px; padding: clamp(10px, 1.25vw, 17px); border: 1px solid var(--line); border-radius: 9px; background: #f4f1e6; }
+    .profile-item:last-child { grid-column: 1 / -1; }
     .profile-label { display: block; color: var(--muted); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; }
     .profile-value { display: block; margin-top: 12px; font-size: 17px; font-weight: 700; }
     .profile-value small { color: var(--muted); font-size: 12px; font-weight: 500; }
-    .interest-tags { display: flex; gap: 8px; margin-top: 10px; }
-    .interest-tags span { padding: 6px 10px; border-radius: 99px; color: var(--blue-deep); background: #e4ecff; font-size: 11px; font-weight: 650; transition: transform .2s, background .2s; }
-    .interest-tags span:hover { transform: translateY(-3px) rotate(-3deg); background: #d4e1ff; }
+    .interest-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .interest-tags span { padding: 6px 10px; border-radius: 99px; color: var(--forest); background: #e2e9d8; font-size: 11px; font-weight: 650; white-space: nowrap; transition: transform .2s, background .2s; }
+    .interest-tags span:hover { transform: translateY(-3px) rotate(-3deg); background: #d3e0c9; }
 
-    .works-section { padding: 1px 0 70px; background: var(--paper-deep); }
+    .works-section { position: relative; z-index: 2; padding: 1px 0 clamp(20px, 3.5vw, 50px); background: var(--paper-deep); }
+    .works-section > .section { border: 0; }
+    .works-intro { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr); align-items: end; gap: clamp(20px, 5vw, 76px); margin-bottom: clamp(22px, 4vw, 52px); }
+    .works-intro .section-title { margin: 12px 0 0; color: #26382a; }
+    .works-author { padding: 14px 0 12px clamp(14px, 2vw, 26px); border-left: 1px solid #9aa990; color: #465345; }
+    .works-author p { margin: 0; font-size: clamp(13px, 1.25vw, 16px); line-height: 1.85; }
+    .works-author .works-author-line { margin-bottom: 7px; color: #36513b; font-size: 11px; font-weight: 750; letter-spacing: .10em; }
+    .works-author-line span { margin: 0 .12em; color: #985b42; }
+    .works-index { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 10px; margin: 0 0 20px; }
+    .works-index a { display: flex; align-items: center; gap: 10px; min-height: 53px; padding: 7px 12px; border: 1px solid #acb7a1; border-radius: 8px; color: #2e4431; background: #f1f2e7; text-decoration: none; }
+    .works-index a:hover { background: #e0e9d8; }
+    .works-index a:focus-visible { outline: 2px solid #7e4c38; outline-offset: 2px; }
+    .works-index a > span:first-child { color: #7e4c38; font-size: 11px; font-weight: 750; }
+    .works-index a > span:last-child { margin-left: auto; }
+    .works-index strong, .works-index small { display: block; }
+    .works-index strong { font-size: clamp(12px, 1.25vw, 16px); }
+    .works-index small { margin-top: 1px; color: #52634e; font-size: 10px; }
+    .works-source { margin: 0; color: #53624f; font-size: 12px; line-height: 1.65; }
     .visual-series { position: relative; margin-top: 24px; padding: clamp(18px, 3vw, 32px); border: 1px solid rgba(17,28,45,.1); border-radius: 26px; box-shadow: 0 16px 38px rgba(17,28,45,.05); perspective: 1500px; transition: transform .5s, box-shadow .5s; }
     .visual-series:hover { transform: translateY(-3px); box-shadow: 0 22px 50px rgba(17,28,45,.09); }
-    .visual-series--lake { background: #e6effb; }
-    .visual-series--daily { background: #f1e3d9; }
-    .visual-series--armor { background: #dce6f7; }
+    .visual-series--lake { background: #dfe8d7; }
+    .visual-series--daily { background: #e9e9d7; }
+    .visual-series--armor { background: #dce5d7; }
     .series-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; padding-bottom: 20px; margin-bottom: 20px; border-bottom: 1px solid rgba(17,28,45,.13); }
-    .series-index { color: var(--blue); font-size: 10px; font-weight: 800; letter-spacing: .16em; }
+    .series-index { color: var(--moss); font-size: 10px; font-weight: 800; letter-spacing: .16em; }
     .series-title { margin: 8px 0 0; font: 500 clamp(25px, 3vw, 38px)/1.15 var(--serif); letter-spacing: -.04em; }
-    .series-description { max-width: 320px; margin: 0 0 2px; color: var(--muted); font-size: 11px; line-height: 1.8; text-align: right; }
-    .works-grid { display: grid; grid-template-columns: repeat(6, minmax(0,1fr)); gap: 15px; align-items: stretch; perspective: 1500px; }
-    .project { --gx: 50%; --gy: 50%; position: relative; display: block; width: 100%; min-width: 0; min-height: 330px; padding: 0; border: 0; overflow: hidden; isolation: isolate; color: white; text-align: left; background: #d5d9df; border-radius: 18px; cursor: pointer; transform-style: preserve-3d; will-change: transform; transition: transform .18s ease-out, box-shadow .38s, border-radius .38s; box-shadow: 0 10px 30px rgba(17,28,45,.08); }
+    .series-title:target { color: #76503b; }
+    .series-description { max-width: 32em; margin: 0 0 2px; color: #475648; font-size: clamp(12px, 1.15vw, 15px); line-height: 1.75; }
+    .works-grid { display: grid; grid-template-columns: minmax(0,1.7fr) minmax(0,1fr); grid-template-rows: repeat(2,minmax(0,1fr)); aspect-ratio: 2.08; gap: 13px; align-items: stretch; perspective: 1500px; }
+    .project { --gx: 50%; --gy: 50%; position: relative; display: block; width: 100%; min-width: 0; aspect-ratio: 4 / 3; padding: 0; border: 0; overflow: hidden; isolation: isolate; color: white; text-align: left; background: #6f7e64; border-radius: 18px; cursor: pointer; transform-style: preserve-3d; will-change: transform; transition: transform .18s ease-out, box-shadow .38s, border-radius .38s; box-shadow: 0 10px 30px rgba(17,28,45,.08); }
     .project:hover, .project:focus-visible { box-shadow: 0 24px 52px rgba(17,28,45,.24); border-radius: 23px; }
-    .project:focus-visible { outline: 3px solid var(--orange); outline-offset: 4px; }
-    .visual-series--lake .project:nth-child(-n+2), .visual-series--armor .project:nth-child(-n+2) { grid-column: span 3; min-height: 390px; }
-    .visual-series--lake .project:nth-child(n+3), .visual-series--daily .project, .visual-series--armor .project:nth-child(n+3) { grid-column: span 2; min-height: 290px; }
-    .project > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: translate3d(calc(var(--depth-x,0px) * -.45),calc(var(--depth-y,0px) * -.45),0) scale(1.09); transition: transform 1.2s cubic-bezier(.2,.8,.2,1), filter .6s; will-change: transform; }
+    .project:focus-visible { outline: 3px solid var(--clay); outline-offset: 4px; }
+    .works-grid .project { aspect-ratio: auto; }
+    .works-grid .project:first-child { grid-row: span 2; }
+    .project > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: translate3d(calc(var(--depth-x,0px) * -.45),calc(var(--depth-y,0px) * -.45),0) scale(1.055); transition: transform 1.2s cubic-bezier(.2,.8,.2,1), filter .6s; will-change: transform; }
     .project-person { position: absolute; z-index: 2; inset: 0; overflow: hidden; pointer-events: none; clip-path: ellipse(36% 47% at var(--person-x,50%) var(--person-y,46%)); transform: translate3d(calc(var(--depth-x,0px) * .7),calc(var(--depth-y,0px) * .7),54px); transform-style: preserve-3d; transition: transform .7s cubic-bezier(.2,.8,.2,1), filter .7s; filter: drop-shadow(0 10px 12px rgba(7,20,45,.18)); }
-    .project-person img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.09); }
+    .project-person img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.055); }
     .project-depth-frame { position: absolute; z-index: 2; inset: 12px; border: 1px solid rgba(255,255,255,.22); border-radius: 13px; pointer-events: none; transform: translateZ(34px) scale(.94); opacity: 0; transition: opacity .5s, inset .8s cubic-bezier(.2,.8,.2,1), transform .8s cubic-bezier(.2,.8,.2,1); box-shadow: inset 0 0 0 1px rgba(12,22,41,.12), 0 0 0 1px rgba(255,255,255,.08); }
-    .visual-series--lake .project:first-child img { object-position: 44% center; }
-    .visual-series--lake .project:nth-child(2) img { object-position: center 40%; }
-    .visual-series--lake .project:nth-child(5) img { object-position: center 34%; }
-    .visual-series--daily .project:first-child img { object-position: center 44%; }
-    .visual-series--armor .project:first-child img { object-position: center 36%; }
-    .visual-series--armor .project:nth-child(2) img { object-position: center 36%; }
-    .project:hover > img, .project:focus-visible > img { filter: saturate(1.12) contrast(1.02); }
+    .project:hover > img, .project:focus-visible > img { filter: saturate(1.04) contrast(1.02); }
     .project:hover .project-person, .project:focus-visible .project-person { animation: person-float 4s cubic-bezier(.35,.05,.2,1) infinite; filter: drop-shadow(0 16px 18px rgba(7,20,45,.32)); }
     .project:hover .project-depth-frame, .project:focus-visible .project-depth-frame { inset: 25px; transform: translateZ(42px) scale(.98); opacity: 1; }
-    .project::before { content: ""; position: absolute; z-index: 1; inset: 0; pointer-events: none; background: rgba(5,14,29,.34); }
+    .project::before { content: ""; position: absolute; z-index: 3; inset: 0; pointer-events: none; background: linear-gradient(180deg, transparent 43%, #19231a24 67%, #182319d9 100%); }
     .project::after { display: none; }
     .project-caption { position: absolute; z-index: 4; left: 22px; right: 22px; bottom: 20px; color: white; transform: translateZ(58px); transition: transform .4s cubic-bezier(.2,.8,.2,1); }
     .project:hover .project-caption { transform: translate3d(0,-4px,68px); }
-    .project h3 { margin: 0 0 5px; font: 500 clamp(22px, 3vw, 34px)/1.2 var(--serif); }
-    .project p { margin: 0; color: rgba(255,255,255,.78); font-size: 11px; }
-    .works-footnote { margin: 23px 0 0; color: var(--muted); font-size: 11px; }
-    .lightbox { width: min(92vw, 1080px); max-width: none; max-height: 90vh; padding: 18px; overflow: visible; border: 1px solid rgba(255,255,255,.2); border-radius: 24px; color: white; background: rgba(14,24,43,.94); box-shadow: 0 30px 100px rgba(0,0,0,.4); }
-    .lightbox::backdrop { background: rgba(7,13,26,.82); backdrop-filter: blur(12px); }
+    .project-caption strong { display: block; margin: 0 0 5px; font: 500 clamp(20px, 2.6vw, 30px)/1.2 var(--serif); }
+    .project-caption small { color: #f7f3e5dd; font-size: 11px; }
+    .work-study { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2.6fr); align-items: center; gap: clamp(12px, 2.1vw, 30px); margin-top: clamp(13px, 2vw, 25px); padding: clamp(11px, 1.5vw, 20px); border: 1px solid #9da88d; border-radius: 13px; background: #f2f0e3; }
+    .work-study-image { position: relative; display: block; width: 100%; aspect-ratio: 4 / 3; padding: 0; overflow: hidden; border: 0; border-radius: 8px; background: #8b977b; color: #fffaf0; cursor: pointer; }
+    .work-study-image img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .35s ease; }
+    .work-study-image:is(:hover,:focus-visible) img { transform: scale(1.04); }
+    .work-study-image:focus-visible { outline: 2px solid #7e4c38; outline-offset: 2px; }
+    .work-study-image > span { position: absolute; right: 7px; bottom: 7px; padding: 3px 6px; border-radius: 4px; background: #243325e8; font-size: 10px; }
+    .work-study-copy > p { margin: 0 0 3px; color: #6d4735; font-size: 10px; font-weight: 750; letter-spacing: .11em; }
+    .work-study-copy h4 { margin: 0; color: #2f4230; font-size: clamp(17px, 2vw, 26px); line-height: 1.25; }
+    .work-study-facts { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px 18px; margin: 11px 0 0; }
+    .work-study-facts > div { padding-top: 5px; border-top: 1px solid #a8b195; }
+    .work-study-facts dt { color: #476044; font-size: 11px; font-weight: 750; }
+    .work-study-facts dd { margin: 3px 0 0; color: #495648; font-size: clamp(12px, 1.12vw, 15px); line-height: 1.62; }
+    .works-signoff { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 14px 30px; margin-top: clamp(24px, 4vw, 60px); padding: clamp(18px, 3vw, 39px); border: 1px solid #adbba1; border-radius: 15px; color: #314333; background: #dce6d3; }
+    .works-signoff p { margin: 0; font-size: clamp(13px, 1.2vw, 17px); line-height: 1.6; }
+    .works-signoff div p { margin-bottom: 7px; color: #556c53; font-size: 10px; font-weight: 750; letter-spacing: .14em; }
+    .works-signoff strong { display: block; font: 500 clamp(28px, 4vw, 56px)/1.05 var(--serif); }
+    .lightbox { width: min(92vw, 1080px); max-width: none; max-height: 90vh; padding: 18px; overflow: visible; border: 1px solid rgba(255,255,255,.2); border-radius: 24px; color: white; background: #27392bf7; box-shadow: 0 30px 100px rgba(0,0,0,.4); }
+    .lightbox::backdrop { background: #17241bd1; backdrop-filter: blur(12px); }
     .lightbox[open] { animation: lightbox-in .45s cubic-bezier(.2,.8,.2,1) both; }
     .lightbox-inner { display: grid; grid-template-columns: 1fr 220px; gap: 20px; align-items: end; }
     .lightbox img { display: block; width: 100%; max-height: calc(90vh - 40px); object-fit: contain; border-radius: 14px; background: rgba(255,255,255,.05); }
     .lightbox-meta { padding: 10px 8px 24px 0; }
-    .lightbox-meta span { color: var(--mint); font-size: 10px; letter-spacing: .14em; }
+    .lightbox-meta span { color: var(--sage); font-size: 10px; letter-spacing: .14em; }
     .lightbox-meta h3 { margin: 13px 0 8px; font: 500 28px/1.25 var(--serif); }
     .lightbox-meta p { margin: 0; color: rgba(255,255,255,.66); font-size: 12px; line-height: 1.7; }
-    .lightbox-close { position: absolute; top: -16px; right: -16px; width: 42px; height: 42px; border: 1px solid rgba(255,255,255,.4); border-radius: 50%; color: white; background: var(--orange); cursor: pointer; font-size: 22px; transition: transform .25s; }
+    .lightbox-close { position: absolute; top: -16px; right: -16px; width: 42px; height: 42px; border: 1px solid rgba(255,255,255,.4); border-radius: 50%; color: white; background: var(--clay); cursor: pointer; font-size: 22px; transition: transform .25s; }
     .lightbox-close:hover { transform: rotate(90deg) scale(1.08); }
 
-    .contact-section { position: relative; overflow: hidden; padding: 94px 0 90px; color: white; background: var(--blue); }
+    .contact-section { --moss: #e4ead8; --forest: #d2dfc5; --sage: #d7e4ce; position: relative; z-index: 2; overflow: hidden; padding: clamp(38px, 6vw, 83px) 0; color: #fff8e9; background: #324b39; }
     .contact-section::before { content: ""; position: absolute; width: 480px; height: 480px; top: -280px; right: -80px; border: 1px solid rgba(255,255,255,.24); border-radius: 50%; box-shadow: 0 0 0 50px rgba(255,255,255,.035), 0 0 0 110px rgba(255,255,255,.03); }
-    .contact-inner { position: relative; display: flex; justify-content: space-between; align-items: end; gap: 40px; }
-    .contact-section .section-kicker { color: var(--mint); }
-    .contact-section .section-kicker::before { background: var(--orange); }
+    .contact-inner { position: relative; display: grid; grid-template-columns: minmax(0,1.4fr) minmax(220px,.6fr); align-items: center; gap: clamp(16px, 4vw, 56px); }
+    .contact-section .section-kicker { color: var(--sage); }
+    .contact-section .section-kicker::before { background: var(--clay); }
     .contact-title { max-width: 600px; margin: 17px 0 15px; font: 500 clamp(42px, 6vw, 72px)/1.08 var(--serif); letter-spacing: -.06em; }
     .contact-copy { margin: 0; color: rgba(255,255,255,.76); font-size: 13px; line-height: 1.8; }
-    .contact-actions { display: flex; flex-direction: column; align-items: flex-start; gap: 13px; min-width: 220px; }
-    .contact-button { border: 0; cursor: pointer; }
+    .contact-actions { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; padding: clamp(14px, 2vw, 24px); border: 1px solid #d0dfc45e; border-radius: 13px; background: #e5edcf0a; }
+    .contact-button { border: 0; color: #2b4031; cursor: pointer; }
     .contact-phone { color: white; font-size: 13px; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.55); padding-bottom: 5px; transition: color .2s, border-color .2s; }
-    .contact-phone:hover { color: var(--mint); border-color: var(--mint); }
-    .copy-feedback { min-height: 14px; color: var(--mint); font-size: 10px; }
+    .contact-phone:hover { color: var(--sage); border-color: var(--sage); }
+    .copy-feedback { min-height: 14px; color: var(--sage); font-size: 10px; }
     footer { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 20px; color: var(--muted); font-size: 10px; letter-spacing: .05em; }
     footer strong { color: var(--ink); }
     .back-top { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; transition: color .2s, transform .2s; }
-    .back-top:hover { color: var(--blue); transform: translateY(-3px); }
+    .back-top:hover { color: var(--moss); transform: translateY(-3px); }
 
     .reveal { opacity: 0; filter: blur(5px); transform: translateY(36px) scale(.985); transition: opacity 1s ease, filter 1s ease, transform 1.05s cubic-bezier(.2,.8,.2,1); }
     .reveal.is-visible { opacity: 1; filter: blur(0); transform: translateY(0) scale(1); }
@@ -182,48 +215,53 @@
     @keyframes lightbox-in { from { opacity: 0; transform: scale(.94) translateY(18px); } to { opacity: 1; transform: scale(1) translateY(0); } }
     @keyframes person-float { 0%,100% { translate: 0 0; scale: 1; } 28% { translate: 0 -3px; scale: 1.012; } 62% { translate: 0 2px; scale: 1.018; } }
 
+    @media (max-width: 900px) {
+      .profile-overview-grid { grid-template-columns: minmax(0,1fr); }
+    }
     @media (max-width: 820px) {
       .shell { width: min(100% - 40px, 620px); }
-      .about-layout { grid-template-columns: 1fr; gap: 30px; }
-      .works-grid { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px; }
-      .visual-series .project, .visual-series .project:nth-child(n) { grid-column: span 1; min-height: 320px; }
-      .visual-series--lake .project:nth-child(-n+2), .visual-series--armor .project:nth-child(-n+2) { grid-column: span 2; min-height: 360px; }
+      .chapter-heading { align-items: start; flex-direction: column; gap: 8px; }
+      .works-grid { grid-template-columns: repeat(2, minmax(0,1fr)); grid-template-rows: auto; aspect-ratio: auto; gap: 12px; }
+      .works-grid .project { aspect-ratio: 4 / 3; }
+      .works-intro { grid-template-columns: minmax(0,1fr); }
+      .works-grid .project:first-child { grid-column: span 2; grid-row: auto; }
       .series-head { align-items: flex-start; flex-direction: column; gap: 10px; }
       .series-description { text-align: left; }
       .lightbox-inner { grid-template-columns: 1fr; }
       .lightbox-meta { padding: 4px 4px 10px; }
-      .contact-inner { align-items: flex-start; flex-direction: column; }
+      .contact-inner { grid-template-columns: minmax(0,1fr); }
       .contact-actions { flex-direction: row; flex-wrap: wrap; align-items: center; }
     }
     @media (max-width: 560px) {
       .shell { width: calc(100% - 36px); }
       .topbar-inner { height: 66px; }
-      .brand { font-size: 13px; } .brand-mark { width: 32px; height: 32px; }
-      .nav { gap: 13px; font-size: 11px; } .nav a:nth-child(2) { display: none; }
-      .nav-cta { padding: 9px 13px !important; }
+      .brand { gap: 7px; font-size: 13px; white-space: nowrap; } .brand-mark { width: 30px; height: 30px; }
+      .brand small { display: none; }
+      .nav { gap: clamp(6px, 1.7vw, 12px); font-size: 11px; white-space: nowrap; }
+      .nav-cta { padding: 8px 9px !important; }
       .guide { right: 12px; bottom: 12px; grid-template-columns: 76px minmax(145px, 190px); gap: 8px; }
       .guide-avatar { width: 76px; height: 68px; }
       .guide { --camera-x: 0px !important; --camera-y: 0px !important; }
       .guide-card { padding: 9px 11px; }
       .guide-say { min-height: 32px; margin: 5px 0 6px; font-size: 10px; }
-      .section { padding: 76px 0; }
-      .section-title-row { display: block; margin-bottom: 26px; }
-      .section-aside { margin-top: 12px; text-align: left; }
+      .section { padding: 42px 0; }
       .about-note { padding: 24px; } .about-note p { font-size: 20px; }
-      .profile-item { min-height: 100px; padding: 16px; } .profile-value { font-size: 15px; }
+      .profile-item { min-height: 72px; } .profile-value { font-size: 15px; }
       .works-grid { grid-template-columns: 1fr; gap: 13px; }
-      .visual-series .project, .visual-series .project:nth-child(n) { grid-column: auto; min-height: 320px; }
-      .visual-series .project:nth-child(1) { min-height: 350px; }
+      .works-index, .work-study { grid-template-columns: minmax(0,1fr); }
+      .work-study-image { aspect-ratio: 16 / 10; }
+      .works-grid .project:first-child { grid-column: auto; }
       .visual-series { margin-top: 17px; padding: 15px; border-radius: 20px; }
       .lightbox { width: calc(100vw - 28px); padding: 10px; border-radius: 16px; }
       .lightbox-close { top: -12px; right: -6px; }
-      .contact-section { padding: 72px 0; }
+      .contact-section { padding: 42px 0; }
       footer { align-items: flex-start; flex-direction: column; justify-content: center; padding: 20px 0; }
     }
     @media (pointer: coarse) { .project { transform: none !important; } .pointer-follower { display: none; } }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
       .reveal { opacity: 1; transform: none; }
+      .work-study-image:is(:hover,:focus-visible) img { transform: none; }
     }
   </style>
 </head>
@@ -234,7 +272,7 @@
     <div class="shell topbar-inner">
       <a class="brand" href="#top" aria-label="回到赵逸飞简历顶部"><span class="brand-mark">逸</span><span>赵逸飞 <small style="color:var(--muted);font-weight:500">/ 简历</small></span></a>
       <nav class="nav" aria-label="主导航">
-        <a href="#profile">个人简介</a><a href="#works">视觉内容</a><a href="#contact" class="nav-cta">联系我 ↗</a>
+        <a href="#profile">简介</a><a href="#profile-stories">故事</a><a href="#works">作品</a><a href="#contact" class="nav-cta">联系我</a>
       </nav>
     </div>
   </div>
@@ -250,9 +288,9 @@
         <div class="avatar-opening">
           <div class="avatar-label" aria-hidden="true"><span>ZHAO YIFEI</span><span>PERSONAL PORTFOLIO / 2026</span></div>
           <div class="avatar-intro">
-            <p class="avatar-kicker">ABOUT / 个人简介</p>
-            <h1 id="hero-title">About Yifei</h1>
-            <p class="avatar-role">赵逸飞 · IP操盘手 · 视觉内容创作者</p>
+            <p class="avatar-kicker">ZHAO YIFEI / BEIJING</p>
+            <h1 id="hero-title">赵逸飞</h1>
+            <p class="avatar-role">IP操盘手 · 视觉内容创作者</p>
             <a class="avatar-link" href="#avatar-resume-title">向下看履历 <span aria-hidden="true">↓</span></a>
           </div>
         </div>
@@ -265,12 +303,66 @@
             <div><dt>所在城市</dt><dd>北京</dd></div>
             <div><dt>个人方向</dt><dd>无限进步</dd></div>
           </dl>
-          <a class="avatar-link" href="#works">看看我的作品 <span aria-hidden="true">↗</span></a>
+          <a class="avatar-link" href="#portfolio-bridge">先看作品选段 <span aria-hidden="true">↗</span></a>
         </section>
       </div>
     </section>
 
+    <section class="profile-overview" id="profile" aria-labelledby="profile-title">
+      <div class="shell">
+        <header class="chapter-heading">
+          <div><p class="chapter-kicker">01 / PROFILE</p><h2 class="section-title" id="profile-title">关于我</h2></div>
+          <p>我在北京做个人 IP 和内容创作。工作之外，我喜欢旅行、火锅、拍小动物和收藏手办。</p>
+        </header>
+        <div class="profile-overview-grid">
+          <section class="profile-frame" id="profile-frame" aria-labelledby="profile-frame-name">
+            <div class="identity-mirrors" aria-hidden="true"></div>
+            <div class="identity-window">
+              <div class="identity-toolbar" aria-hidden="true">
+                <span class="identity-lights"><i></i><i></i><i></i></span>
+                <svg class="identity-nav" viewBox="0 0 64 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M13 8H3m4-4L3 8l4 4m12-4h10m-4-4 4 4-4 4m26-9a5 5 0 1 0 1 7m-1-9v4h-4"/>
+                </svg>
+                <span class="identity-tab"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3.5" y="7" width="9" height="6" rx="1"/><path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2"/></svg>个人名片</span>
+                <svg class="identity-menu" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="4" r="1.5"/><circle cx="10" cy="10" r="1.5"/><circle cx="10" cy="16" r="1.5"/></svg>
+              </div>
+              <div class="identity-body">
+                <div class="identity-portrait" aria-hidden="true">
+                  <img class="identity-poster" src="assets/avatar/original-eyes/front.jpg" alt="" width="512" height="512" loading="lazy" decoding="async">
+                  <canvas class="identity-canvas"></canvas>
+                  <span class="identity-figure-label">肖像 / PORTRAIT</span>
+                </div>
+                <div class="identity-info">
+                  <p class="identity-label"><span></span>个人名片 / PROFILE</p>
+                  <h2 id="profile-frame-name">赵逸飞</h2>
+                  <p class="identity-roman" aria-hidden="true">ZHAO YIFEI</p>
+                  <dl class="identity-location">
+                    <div><dt>地址</dt><dd>北京</dd></div>
+                    <div aria-hidden="true"><dt>LOCATION</dt><dd>BEIJING</dd></div>
+                  </dl>
+                  <a href="#portfolio-bridge" class="identity-portfolio">作品选段 <span aria-hidden="true">↗</span></a>
+                  <button class="identity-replay" type="button" hidden>重播 <span aria-hidden="true">↻</span></button>
+                </div>
+              </div>
+            </div>
+          </section>
+          <div class="about-layout">
+            <div class="about-note"><span class="quote-mark" aria-hidden="true">“</span><p>无限进步。<br>把每次探索，都变成下一步的起点。</p></div>
+            <div class="profile-grid">
+              <div class="profile-item"><span class="profile-label">CURRENT ROLE / 当前身份</span><span class="profile-value">IP操盘手</span></div>
+              <div class="profile-item"><span class="profile-label">BASED IN / 所在城市</span><span class="profile-value">北京 <small>CHINA</small></span></div>
+              <div class="profile-item"><span class="profile-label">OFF THE CLOCK / 兴趣爱好</span><div class="interest-tags"><span>火锅</span><span>旅游</span><span>拍小动物</span><span>收藏手办</span></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="profile-vibe" id="profile-vibe" aria-labelledby="profile-vibe-title">
+      <div class="chapter-heading vibe-heading">
+        <div><p class="chapter-kicker">02 / VIBE</p><p class="vibe-heading-title">让角色动起来</p></div>
+        <p>从桌面上的手办，到屏幕里的小动作。</p>
+      </div>
       <div class="vibe-stage">
         <h2 class="vibe-title" id="profile-vibe-title" aria-label="Vibe">
           <span aria-hidden="true">V</span><span aria-hidden="true">I</span><span aria-hidden="true">B</span><span aria-hidden="true">E</span>
@@ -287,6 +379,9 @@
       </div>
       <div class="vibe-caption">
         <p>赵逸飞 <span aria-hidden="true">/</span> 个人 IP 与内容创作</p>
+        <button class="portfolio-cue vibe-work-cue" type="button" data-lightbox data-title="兜帽角色近景" data-kind="角色 · 材质" data-description="深苔色兜帽、细链和一处暖色点缀，放大后能看到手塑的纹理。">
+          <img src="assets/works/eagle-green/hooded-figure.webp" alt="戴深苔色兜帽和金属链饰的黏土角色近景" aria-hidden="true" loading="lazy" decoding="async"><span>角色造型 <span aria-hidden="true">↗</span></span>
+        </button>
         <button class="vibe-play" type="button" hidden>重播动画 <span aria-hidden="true">↻</span></button>
       </div>
     </section>
@@ -295,79 +390,308 @@
       <div class="ticker-track"><span>无限进步 <b>·</b> IP操盘手 <b>·</b> 北京 <b>·</b> 火锅与旅行 <b>·</b> 无限进步 <b>·</b> IP操盘手 <b>·</b> 北京 <b>·</b> 火锅与旅行 <b>✳</b></span><span aria-hidden="true">无限进步 <b>·</b> IP操盘手 <b>·</b> 北京 <b>·</b> 火锅与旅行 <b>·</b> 无限进步 <b>·</b> IP操盘手 <b>·</b> 北京 <b>·</b> 火锅与旅行 <b>✳</b></span></div>
     </div>
 
-    <section class="shell section" id="profile">
-      <div class="section-kicker">01 / PROFILE</div>
-      <div class="section-title-row"><h2 class="section-title">关于我</h2><p class="section-aside">一页简历，也是一张正在持续更新的个人名片。</p></div>
-      <div class="about-layout">
-        <div class="about-note reveal"><span class="quote-mark" aria-hidden="true">“</span><p>无限进步。<br>把每次探索，都变成下一步的起点。</p></div>
-        <div class="profile-grid reveal delay-1">
-          <div class="profile-item"><span class="profile-label">CURRENT ROLE / 当前身份</span><span class="profile-value">IP操盘手</span></div>
-          <div class="profile-item"><span class="profile-label">BASED IN / 所在城市</span><span class="profile-value">北京 <small>CHINA</small></span></div>
-          <div class="profile-item"><span class="profile-label">MOTTO / 一句话介绍</span><span class="profile-value">无限进步</span></div>
-          <div class="profile-item"><span class="profile-label">OFF THE CLOCK / 兴趣爱好</span><div class="interest-tags"><span>火锅</span><span>旅游</span></div></div>
+    <section class="profile-stories" id="profile-stories" aria-labelledby="profile-stories-title">
+      <div class="shell">
+        <header class="stories-heading">
+          <div><p>03 / STORY NOTES</p><h2 id="profile-stories-title">关于我的三个片段</h2></div>
+          <p>工作台、北京街头，还有下一步。</p>
+        </header>
+        <nav class="story-jumps" aria-label="个人故事导航">
+          <a href="#story-studio"><span>01</span><strong>从灵感到画面</strong><span aria-hidden="true">↓</span></a>
+          <a href="#story-beijing"><span>02</span><strong>北京日常</strong><span aria-hidden="true">↓</span></a>
+          <a href="#story-growth"><span>03</span><strong>无限进步</strong><span aria-hidden="true">↓</span></a>
+        </nav>
+
+        <article class="profile-story story-studio" id="story-studio" data-story="studio" data-selection="0" aria-labelledby="story-studio-title" tabindex="-1">
+          <div class="story-visual">
+            <div class="story-image">
+              <img src="assets/profile-illustrations/01-content-studio.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="黏土形象坐在工作台前看手里的分镜，桌上摆着相机和草图。">
+              <svg class="story-cues studio-frames" viewBox="0 0 1448 1086" aria-hidden="true">
+                <path d="M420 911 649 899 711 971 483 996Z"/>
+                <path d="M700 906 919 900 985 966 762 982Z"/>
+                <path d="M950 894 1146 891 1224 958 1014 974Z"/>
+              </svg>
+            </div>
+          </div>
+          <div class="story-copy">
+            <p class="story-index"><span>01</span> / AT THE DESK</p>
+            <h3 id="story-studio-title">从灵感到画面</h3>
+            <div class="studio-choices" role="group" aria-label="查看创作分镜" hidden>
+              <button type="button" aria-pressed="true" aria-controls="studio-idea">灵感</button>
+              <button type="button" aria-pressed="false" aria-controls="studio-storyboard">分镜</button>
+              <button type="button" aria-pressed="false" aria-controls="studio-finish">成片</button>
+            </div>
+            <div class="studio-panels">
+              <section class="studio-stage" id="studio-idea" aria-labelledby="studio-idea-title">
+                <h4 id="studio-idea-title">火烈鸟怎么戴上了头盔？</h4>
+                <p>我爱拍小动物，也喜欢收藏手办。把骑士的银色头盔戴到火烈鸟头上，两个兴趣就有了一个共同的角色。</p>
+                <div class="studio-stage-links">
+                  <a class="portfolio-cue story-work-cue" href="#lake-work-flamingo" data-studio-work>
+                    <span>看角色特写 <span aria-hidden="true">↗</span></span>
+                  </a>
+                  <a href="#lake-character-process">看角色怎么做 <span aria-hidden="true">↓</span></a>
+                </div>
+              </section>
+              <section class="studio-stage" id="studio-storyboard" aria-labelledby="studio-storyboard-title" hidden>
+                <h4 id="studio-storyboard-title">用三格讲一次相遇</h4>
+                <ol class="studio-shot-list">
+                  <li><a href="#lake-work-scene"><strong>远景</strong><span>看湖岸、骑士和火烈鸟在画面里的位置。</span><span aria-hidden="true">↓</span></a></li>
+                  <li><a href="#lake-work-sketch"><strong>中景</strong><span>在草图里看两位角色怎么隔水对视。</span><span aria-hidden="true">↓</span></a></li>
+                  <li><a href="#lake-work-flamingo"><strong>特写</strong><span>靠近银色头盔，看这个反差从哪来。</span><span aria-hidden="true">↓</span></a></li>
+                </ol>
+                <div class="studio-stage-links">
+                  <a class="portfolio-cue story-work-cue" href="#lake-work-sketch" data-studio-work>
+                    <span>放大分镜草图 <span aria-hidden="true">↗</span></span>
+                  </a>
+                  <a href="#lake-selected">看三张作品选段 <span aria-hidden="true">↓</span></a>
+                </div>
+              </section>
+              <section class="studio-stage" id="studio-finish" aria-labelledby="studio-finish-title" hidden>
+                <h4 id="studio-finish-title">把镜头放到水面边</h4>
+                <p>低机位把骑士、火烈鸟和水里的倒影放进同一张图。苔藓绿留给湖岸，银色头盔和一点粉色把视线带回这次相遇。</p>
+                <div class="studio-stage-links">
+                  <a class="portfolio-cue story-work-cue" href="#lake-work-scene" data-studio-work>
+                    <span>放大完成画面 <span aria-hidden="true">↗</span></span>
+                  </a>
+                  <a href="#lake-series-title">看完整《湖畔奇遇》 <span aria-hidden="true">↓</span></a>
+                </div>
+              </section>
+            </div>
+          </div>
+        </article>
+
+        <div class="stories-pair">
+          <article class="profile-story story-beijing" id="story-beijing" data-story="beijing" aria-labelledby="story-beijing-title" tabindex="-1">
+            <div class="story-visual">
+              <div class="story-image">
+                <img src="assets/profile-illustrations/02-beijing-hutong.webp" width="1448" height="1086" loading="lazy" decoding="async" data-eyes="918,265,21,6,.035;994,260,21,6,-.045" alt="黏土形象站在北京胡同的红门旁，背景是灰砖墙和银杏。">
+                <canvas class="story-eyes" aria-hidden="true"></canvas>
+              </div>
+            </div>
+            <div class="story-copy">
+              <p class="story-index"><span>02</span> / BEIJING</p>
+              <h3 id="story-beijing-title">北京日常</h3>
+              <p>我在北京，喜欢吃火锅，也喜欢到处走走。遇见小动物就顺手拍下来。回到工作台，一只猴子、两杯咖啡也能变成一幕。</p>
+              <ul class="story-destinations" aria-label="从日常跳到作品">
+                <li><a href="#daily-work-reading" data-story-work><span><strong>日常小事</strong><small data-work-title>看午后场景</small></span><span aria-hidden="true">↓</span></a></li>
+                <li><a href="#daily-work-monkey" data-story-work><span><strong>拍小动物</strong><small data-work-title>看猴子角色</small></span><span aria-hidden="true">↓</span></a></li>
+                <li><a href="#daily-work-collection" data-story-work><span><strong>收藏手办</strong><small data-work-title>看手办场景</small></span><span aria-hidden="true">↓</span></a></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="profile-story story-growth" id="story-growth" data-story="growth" aria-labelledby="story-growth-title" tabindex="-1">
+            <div class="story-visual">
+              <div class="story-image">
+                <img src="assets/profile-illustrations/03-keep-growing.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="黏土形象踏上浅绿和暖白相间的纸质台阶。">
+                <svg class="story-cues growth-trail" viewBox="0 0 1448 1086" aria-hidden="true">
+                  <path d="M680 827H729V702H1018V581H1260"/>
+                  <path class="growth-ink" pathLength="1" d="M680 827H729V702H1018V581H1260"/>
+                  <circle cx="680" cy="827" r="10"/><circle cx="841" cy="702" r="10"/><circle cx="1140" cy="581" r="10"/>
+                </svg>
+              </div>
+            </div>
+            <div class="story-copy">
+              <p class="story-index"><span>03</span> / KEEP GROWING</p>
+              <h3 id="story-growth-title">无限进步</h3>
+              <p>把每次探索，都变成下一步的起点。先记下值得留下的细节，再试着把角色做出来，最后用一张完整画面检验这个想法。</p>
+              <ol class="story-destinations growth-steps" aria-label="我的创作步骤">
+                <li><a href="#lake-work-sketch" data-story-work><span><strong>观察</strong><small data-work-title>从一张草图开始</small></span><span aria-hidden="true">↓</span></a></li>
+                <li><a href="#armor-work-cast" data-story-work><span><strong>尝试</strong><small data-work-title>试角色的轮廓和颜色</small></span><span aria-hidden="true">↓</span></a></li>
+                <li><a href="#lake-work-scene" data-story-work><span><strong>再向前</strong><small data-work-title>看完整场景</small></span><span aria-hidden="true">↓</span></a></li>
+              </ol>
+            </div>
+          </article>
         </div>
+
+        <section class="story-bridge" id="portfolio-bridge" aria-labelledby="portfolio-bridge-title">
+          <div class="bridge-rail" aria-hidden="true"></div>
+          <header class="bridge-heading">
+            <p>FROM SKETCH TO SCENE / 从草图到画面</p>
+            <h2 id="portfolio-bridge-title">把想法做成一个小世界</h2>
+            <p>我爱拍小动物，也爱收藏手办。把这两个兴趣放进同一个场景，就有了一只戴头盔的火烈鸟。</p>
+          </header>
+          <div class="bridge-scenes">
+            <figure class="bridge-scene" id="lake-character-process">
+              <div class="story-visual">
+                <div class="story-image"><img src="assets/profile-illustrations/04-build-the-character.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="赵逸飞的黏土形象在工作台上给粉色火烈鸟模型戴头盔。"></div>
+              </div>
+              <figcaption><span>04 / CHARACTER</span><strong>先做角色</strong><p>一顶银色头盔，给火烈鸟一个意想不到的身份。</p></figcaption>
+            </figure>
+            <figure class="bridge-scene">
+              <div class="story-visual">
+                <div class="story-image"><img src="assets/profile-illustrations/05-build-the-lakeside-green.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="赵逸飞的黏土形象拿着相机，在苔藓绿的微缩湖岸旁取景。"></div>
+              </div>
+              <figcaption><span>05 / SCENE</span><strong>再做场景</strong><p>把镜头降到湖面，让一张桌子变成故事发生的地方。</p></figcaption>
+            </figure>
+          </div>
+          <section class="bridge-preview" id="lake-selected" aria-labelledby="bridge-preview-title">
+            <div class="bridge-preview-heading">
+              <div><p>SELECTED WORK / 作品选段</p><h3 id="bridge-preview-title">湖畔奇遇</h3></div>
+              <a href="#works" class="bridge-works-link">查看完整作品集 <span aria-hidden="true">↗</span></a>
+            </div>
+            <p class="bridge-preview-note">从一张草图到湖面上的相遇。看同一个想法，怎么变成角色，再变成完整的画面。</p>
+            <div class="bridge-works">
+              <button class="bridge-work" id="lake-work-sketch" type="button" data-lightbox data-title="湖畔场景草图" data-kind="构图 · 草图" data-description="纸面上的骑士、戴头盔的火烈鸟与鼠尾草绿水面。">
+                <span class="bridge-work-image"><img src="assets/works/eagle-green/lake-sketch.webp" width="1448" height="1086" alt="暖纸上的湖畔构图，画着骑士和戴头盔的火烈鸟" loading="lazy" decoding="async"></span>
+                <span class="bridge-work-label"><small>01 / 构图</small><strong>湖畔场景草图</strong></span>
+              </button>
+              <button class="bridge-work" id="lake-work-flamingo" type="button" data-lightbox data-title="头盔与火烈鸟" data-kind="角色 · 特写" data-description="一顶银色小头盔，给湖边的火烈鸟换了个身份。">
+                <span class="bridge-work-image"><img src="assets/works/eagle-green/lake-flamingo.webp" width="1448" height="1086" alt="戴银色头盔的黏土火烈鸟在绿水里" loading="lazy" decoding="async"></span>
+                <span class="bridge-work-label"><small>02 / 角色</small><strong>头盔与火烈鸟</strong></span>
+              </button>
+              <button class="bridge-work" id="lake-work-scene" type="button" data-lightbox data-title="湖畔相遇" data-kind="场景 · 完整画面" data-description="苔藓绿的微缩湖边，骑士与火烈鸟隔着水面相遇。">
+                <span class="bridge-work-image"><img src="assets/works/eagle-green/lake-scene.webp" width="1448" height="1086" alt="微缩湖岸边的黏土骑士与戴头盔的火烈鸟" loading="lazy" decoding="async"></span>
+                <span class="bridge-work-label"><small>03 / 场景</small><strong>湖畔相遇</strong></span>
+              </button>
+            </div>
+          </section>
+        </section>
       </div>
     </section>
 
-    <section class="works-section" id="works">
-      <div class="shell section" style="border:0">
-        <div class="section-kicker">02 / VISUAL NOTES</div>
-        <div class="section-title-row"><h2 class="section-title">视觉内容片段</h2><p class="section-aside">按故事主题分成独立板块。悬停照片触发 4 秒 3D 镜头动画，点击查看大图。</p></div>
-        <section class="visual-series visual-series--lake reveal" aria-labelledby="lake-series-title">
-          <div class="series-head"><div><span class="series-index">SERIES 01 / LAKESIDE</span><h3 class="series-title" id="lake-series-title">湖畔奇遇</h3></div><p class="series-description">先穿过湖岸与远景，再靠近角色。鼠标会牵引不同景深，人物独立浮动。</p></div>
-          <div class="works-grid">
-          <button class="project reveal" type="button" data-tilt data-lightbox data-title="湖畔相遇" data-kind="CHARACTER SCENE" data-description="骑士、海岸与火烈鸟构成的宽幅角色场景。">
-            <img src="assets/works/lakeside-knight.jpg" alt="骑士与火烈鸟相遇的湖畔插画" loading="lazy"><span class="project-person" aria-hidden="true"><img src="assets/works/lakeside-knight.jpg" alt="" loading="lazy"></span><span class="project-depth-frame" aria-hidden="true"></span><div class="project-caption"><h3>湖畔相遇</h3><p>角色场景 · 插画叙事</p></div>
-          </button>
-          <button class="project reveal delay-1" type="button" data-tilt data-lightbox data-title="骑士角色近景" data-kind="CHARACTER STUDY" data-description="角色表情、眼镜与发型的近景细节。">
-            <img src="assets/works/knight-closeup.jpg" alt="蓝色衣着角色的头部近景插画" loading="lazy"><span class="project-person" aria-hidden="true"><img src="assets/works/knight-closeup.jpg" alt="" loading="lazy"></span><span class="project-depth-frame" aria-hidden="true"></span><div class="project-caption"><h3>角色近景</h3><p>人物表情 · 造型细节</p></div>
-          </button>
-          <button class="project reveal delay-2" type="button" data-tilt data-lightbox data-title="湖边的火烈鸟" data-kind="SCENE DETAIL" data-description="湖岸水色与火烈鸟的局部场景。">
-            <img src="assets/works/flamingo-pair.jpg" alt="湖水中的两只火烈鸟插画" loading="lazy"><span class="project-person" aria-hidden="true"><img src="assets/works/flamingo-pair.jpg" alt="" loading="lazy"></span><span class="project-depth-frame" aria-hidden="true"></span><div class="project-caption"><h3>湖边的火烈鸟</h3><p>色彩片段 · 环境细节</p></div>
-          </button>
-          <button class="project reveal" type="button" data-tilt data-lightbox data-title="头盔与火烈鸟" data-kind="VISUAL PUN" data-description="将骑士头盔与火烈鸟形象结合的趣味画面。">
-            <img src="assets/works/helmet-flamingo.jpg" alt="戴着骑士头盔的火烈鸟插画" loading="lazy"><span class="project-person" aria-hidden="true"><img src="assets/works/helmet-flamingo.jpg" alt="" loading="lazy"></span><span class="project-depth-frame" aria-hidden="true"></span><div class="project-caption"><h3>头盔与火烈鸟</h3><p>角色组合 · 趣味表达</p></div>
-          </button>
-          <button class="project reveal delay-1" type="button" data-tilt data-lightbox data-title="湖畔场景草图" data-kind="PROCESS FRAME" data-description="线稿阶段的场景构图与人物动作探索。">
-            <img src="assets/works/lakeside-storyboard.jpg" alt="骑士与火烈鸟的线稿分镜草图" loading="lazy"><span class="project-person" aria-hidden="true"><img src="assets/works/lakeside-storyboard.jpg" alt="" loading="lazy"></span><span class="project-depth-frame" aria-hidden="true"></span><div class="project-caption"><h3>湖畔场景草图</h3><p>构图探索 · 过程素材</p></div>
-          </button>
+    <section class="works-section" id="works" aria-labelledby="works-title">
+      <div class="shell section">
+        <header class="works-intro">
+          <div>
+            <div class="section-kicker">04 / SELECTED WORKS</div>
+            <h2 class="section-title" id="works-title">把好奇心放进画面</h2>
           </div>
-        </section>
-        <section class="visual-series visual-series--daily reveal" aria-labelledby="daily-series-title">
-          <div class="series-head"><div><span class="series-index">SERIES 02 / DAILY SCENES</span><h3 class="series-title" id="daily-series-title">盔甲骑士的日常</h3></div><p class="series-description">阅读、休憩与桌边的生活切片。悬停时背景后退、人物前移，像走进漫画格。</p></div>
-          <div class="works-grid">
-          <button class="project reveal delay-2" type="button" data-tilt data-lightbox data-title="盔甲骑士的午后" data-kind="VISUAL STORY" data-description="室内场景里的骑士、阅读与生活细节。">
-            <img src="assets/works/knight-studio.jpg" alt="盔甲骑士在工作室阅读的插画" loading="lazy"><span class="project-person" aria-hidden="true"><img src="assets/works/knight-studio.jpg" alt="" loading="lazy"></span><span class="project-depth-frame" aria-hidden="true"></span><div class="project-caption"><h3>盔甲骑士的午后</h3><p>角色场景 · 日常叙事</p></div>
-          </button>
-          <button class="project reveal" type="button" data-tilt data-lightbox data-title="一张桌边小景" data-kind="STORY DETAIL" data-description="盔甲、咖啡与一只举着托盘的猴子。">
-            <img src="assets/works/monkey-cafe.jpg" alt="桌子下方的猴子和咖啡托盘插画" loading="lazy"><span class="project-person" aria-hidden="true"><img src="assets/works/monkey-cafe.jpg" alt="" loading="lazy"></span><span class="project-depth-frame" aria-hidden="true"></span><div class="project-caption"><h3>一张桌边小景</h3><p>生活细节 · 角色互动</p></div>
-          </button>
-          <button class="project reveal delay-1" type="button" data-tilt data-lightbox data-title="盔甲里的阅读时刻" data-kind="CHARACTER MOMENT" data-description="骑士坐在椅子里阅读的角色片段。">
-            <img src="assets/works/armored-reader.jpg" alt="穿着盔甲的骑士坐着阅读插画" loading="lazy"><span class="project-person" aria-hidden="true"><img src="assets/works/armored-reader.jpg" alt="" loading="lazy"></span><span class="project-depth-frame" aria-hidden="true"></span><div class="project-caption"><h3>盔甲里的阅读时刻</h3><p>人物状态 · 角色切片</p></div>
-          </button>
+          <div class="works-author">
+            <p class="works-author-line">赵逸飞 <span>·</span> IP操盘手 <span>·</span> 北京</p>
+            <p>我是赵逸飞，在北京做个人 IP 和内容创作。我喜欢拍小动物、收藏手办，也喜欢旅行和吃火锅。这组作品从日常的小发现出发，用黏土角色、微缩布景和镜头把想法串成故事。</p>
           </div>
-        </section>
-        <section class="visual-series visual-series--armor reveal" aria-labelledby="armor-series-title">
-          <div class="series-head"><div><span class="series-index">SERIES 03 / ARMOR UNIVERSE</span><h3 class="series-title" id="armor-series-title">盔甲宇宙</h3></div><p class="series-description">从人物造型、群像海报到故事尾声。逐层推进空间，角色会有各自的轻微动作。</p></div>
-          <div class="works-grid">
-          <button class="project reveal delay-2" type="button" data-tilt data-lightbox data-title="Ghosts in My Armor" data-kind="POSTER / CONCEPT" data-description="蓝色与橙红色盔甲人物构成的群像海报。">
-            <img src="assets/works/ghosts-in-armor.jpg" alt="蓝色与橙红色盔甲人物群像海报插画" loading="lazy"><span class="project-person" aria-hidden="true"><img src="assets/works/ghosts-in-armor.jpg" alt="" loading="lazy"></span><span class="project-depth-frame" aria-hidden="true"></span><div class="project-caption"><h3>Ghosts in My Armor</h3><p>群像概念 · 海报画面</p></div>
-          </button>
-          <button class="project reveal" type="button" data-tilt data-lightbox data-title="兜帽角色造型" data-kind="CHARACTER LOOK" data-description="深色衣着、银色链饰与蓝白背景构成的造型画面。">
-            <img src="assets/works/hooded-character.jpg" alt="深色兜帽人物全身插画" loading="lazy"><span class="project-person" aria-hidden="true"><img src="assets/works/hooded-character.jpg" alt="" loading="lazy"></span><span class="project-depth-frame" aria-hidden="true"></span><div class="project-caption"><h3>兜帽角色造型</h3><p>服装轮廓 · 人物视觉</p></div>
-          </button>
-          <button class="project reveal delay-1" type="button" data-tilt data-lightbox data-title="群像概念" data-kind="CAST STUDY" data-description="不同盔甲角色组合成的群像视觉。">
-            <img src="assets/works/armored-cast.jpg" alt="多位盔甲角色组成的群像画面" loading="lazy"><span class="project-person" aria-hidden="true"><img src="assets/works/armored-cast.jpg" alt="" loading="lazy"></span><span class="project-depth-frame" aria-hidden="true"></span><div class="project-caption"><h3>群像概念</h3><p>角色组合 · 色彩系统</p></div>
-          </button>
-          <button class="project reveal delay-2" type="button" data-tilt data-lightbox data-title="故事的尾声" data-kind="ENDING FRAME" data-description="宝箱、粉色触手与手写对白构成的结尾画面。">
-            <img src="assets/works/treasure-chest.jpg" alt="宝箱和粉色触手的漫画结尾画面" loading="lazy"><span class="project-person" aria-hidden="true"><img src="assets/works/treasure-chest.jpg" alt="" loading="lazy"></span><span class="project-depth-frame" aria-hidden="true"></span><div class="project-caption"><h3>故事的尾声</h3><p>漫画画面 · 叙事收束</p></div>
-          </button>
-          <button class="project reveal" type="button" data-tilt data-lightbox data-title="盔甲细节" data-kind="DETAIL FRAME" data-description="红色盔甲与蓝色群像之间的视觉细节。">
-            <img src="assets/works/armor-detail.jpg" alt="红色盔甲人物的局部特写" loading="lazy"><span class="project-person" aria-hidden="true"><img src="assets/works/armor-detail.jpg" alt="" loading="lazy"></span><span class="project-depth-frame" aria-hidden="true"></span><div class="project-caption"><h3>盔甲细节</h3><p>色彩对比 · 角色特写</p></div>
-          </button>
+        </header>
+        <nav class="works-index" aria-label="作品集系列目录">
+          <a href="#lake-series-title"><span>01</span><span><strong>湖畔奇遇</strong><small>分镜与角色叙事</small></span><span aria-hidden="true">↓</span></a>
+          <a href="#daily-series-title"><span>02</span><span><strong>盔甲骑士的日常</strong><small>日常物件与微缩布景</small></span><span aria-hidden="true">↓</span></a>
+          <a href="#armor-series-title"><span>03</span><span><strong>盔甲宇宙</strong><small>手办造型与材质</small></span><span aria-hidden="true">↓</span></a>
+        </nav>
+        <p class="works-source">作品手记里的细节图参考了 Eagle 收藏的分镜和插画，以本页的绿色黏土风重新演绎。</p>
+        <section class="visual-series visual-series--lake" aria-labelledby="lake-series-title">
+          <div class="series-head">
+            <div><span class="series-index">SERIES 01 / LAKESIDE</span><h3 class="series-title" id="lake-series-title">湖畔奇遇</h3></div>
+            <p class="series-description">我爱拍小动物，也喜欢给熟悉的东西加一点意外。给火烈鸟戴上一顶头盔，湖边的相遇就有了故事。</p>
           </div>
+          <div class="works-grid">
+            <button class="project" type="button" data-tilt data-lightbox data-title="湖畔相遇" data-kind="场景 · 完整画面" data-description="苔藓绿的微缩湖边，骑士与火烈鸟隔着水面相遇。">
+              <img src="assets/works/eagle-green/lake-scene.webp" alt="微缩湖岸边的黏土骑士与戴头盔的火烈鸟" loading="lazy" decoding="async">
+              <span class="project-person" aria-hidden="true"><img src="assets/works/eagle-green/lake-scene.webp" alt="" loading="lazy" decoding="async"></span>
+              <span class="project-depth-frame" aria-hidden="true"></span>
+              <span class="project-caption"><strong>湖畔相遇</strong><small>场景 · 完整画面</small></span>
+            </button>
+            <button class="project" type="button" data-tilt data-lightbox data-title="湖畔场景草图" data-kind="构图 · 草图" data-description="纸面上的骑士、戴头盔的火烈鸟与鼠尾草绿水面。">
+              <img src="assets/works/eagle-green/lake-sketch.webp" alt="暖纸上的湖畔构图，画着骑士和戴头盔的火烈鸟" loading="lazy" decoding="async">
+              <span class="project-person" aria-hidden="true"><img src="assets/works/eagle-green/lake-sketch.webp" alt="" loading="lazy" decoding="async"></span>
+              <span class="project-depth-frame" aria-hidden="true"></span>
+              <span class="project-caption"><strong>湖畔场景草图</strong><small>构图 · 草图</small></span>
+            </button>
+            <button class="project" type="button" data-tilt data-lightbox data-title="头盔与火烈鸟" data-kind="角色 · 特写" data-description="一顶银色小头盔，给湖边的火烈鸟换了个身份。">
+              <img src="assets/works/eagle-green/lake-flamingo.webp" alt="戴银色头盔的黏土火烈鸟在绿水里" loading="lazy" decoding="async">
+              <span class="project-person" aria-hidden="true"><img src="assets/works/eagle-green/lake-flamingo.webp" alt="" loading="lazy" decoding="async"></span>
+              <span class="project-depth-frame" aria-hidden="true"></span>
+              <span class="project-caption"><strong>头盔与火烈鸟</strong><small>角色 · 特写</small></span>
+            </button>
+          </div>
+          <aside class="work-study" aria-labelledby="lake-study-title">
+            <button class="work-study-image" type="button" data-lightbox aria-haspopup="dialog" data-title="骑士表情小样" data-kind="创作手记 · 表情" data-description="保留同一角色的发型、眼镜和衣领，用头部角度与细微表情区分三张小样。">
+              <img src="assets/works/eagle-green/lake-expression-study.webp" alt="同一位黏土骑士的三个表情小样" width="1448" height="1086" loading="lazy" decoding="async">
+              <span>放大细节 ↗</span>
+            </button>
+            <div class="work-study-copy">
+              <p>01 / 创作手记</p>
+              <h4 id="lake-study-title">骑士表情小样</h4>
+              <dl class="work-study-facts">
+                <div><dt>观察重点</dt><dd>对比头部角度和嘴角变化，看骑士的好奇心怎么表现出来。</dd></div>
+                <div><dt>画面取舍</dt><dd>发型、眼镜和衣领用同一套设定，让观众一眼认出是同一个角色。</dd></div>
+              </dl>
+            </div>
+          </aside>
         </section>
-        <p class="works-footnote">分层视差与角色微动约每 4 秒完成一轮；移动鼠标可从不同角度走入画面。点击卡片放大浏览。</p>
+        <section class="visual-series visual-series--daily" aria-labelledby="daily-series-title">
+          <div class="series-head">
+            <div><span class="series-index">SERIES 02 / DAILY SCENES</span><h3 class="series-title" id="daily-series-title">盔甲骑士的日常</h3></div>
+            <p class="series-description">在北京，我喜欢吃火锅，也喜欢到处走走。路上留意的小动物和不起眼的日常物件，都是可以带回工作台的灵感。</p>
+          </div>
+          <div class="works-grid">
+            <button class="project" id="daily-work-reading" type="button" data-tilt data-lightbox data-title="盔甲骑士的午后" data-kind="微缩场景 · 阅读" data-description="一把绿椅子、一本小书和一扇透光的窗，让盔甲骑士有了自己的午后。">
+              <img src="assets/works/eagle-green/studio-reading.webp" alt="盔甲黏土手办坐在苔绿色椅子里读书" loading="lazy" decoding="async">
+              <span class="project-person" aria-hidden="true"><img src="assets/works/eagle-green/studio-reading.webp" alt="" loading="lazy" decoding="async"></span>
+              <span class="project-depth-frame" aria-hidden="true"></span>
+              <span class="project-caption"><strong>盔甲骑士的午后</strong><small>微缩场景 · 阅读</small></span>
+            </button>
+            <button class="project" id="daily-work-monkey" type="button" data-tilt data-lightbox data-title="端咖啡的猴子" data-kind="小动物 · 角色" data-description="手捏的猴子举着木托盘，两只陶杯是画面里的暖色。">
+              <img src="assets/works/eagle-green/animal-cafe.webp" alt="手捏的灰色猴子举着摆有两只小陶杯的托盘" loading="lazy" decoding="async">
+              <span class="project-person" aria-hidden="true"><img src="assets/works/eagle-green/animal-cafe.webp" alt="" loading="lazy" decoding="async"></span>
+              <span class="project-depth-frame" aria-hidden="true"></span>
+              <span class="project-caption"><strong>端咖啡的猴子</strong><small>小动物 · 角色</small></span>
+            </button>
+            <button class="project" id="daily-work-collection" type="button" data-tilt data-lightbox data-title="手办收藏角" data-kind="手办 · 日常物件" data-description="橄榄绿的骑士手办、小宝箱和一双微缩运动鞋摆在一起。">
+              <img src="assets/works/eagle-green/shelf-collection.webp" alt="绿色架子上的骑士手办、小宝箱与红棕色微缩运动鞋" loading="lazy" decoding="async">
+              <span class="project-person" aria-hidden="true"><img src="assets/works/eagle-green/shelf-collection.webp" alt="" loading="lazy" decoding="async"></span>
+              <span class="project-depth-frame" aria-hidden="true"></span>
+              <span class="project-caption"><strong>手办收藏角</strong><small>手办 · 日常物件</small></span>
+            </button>
+          </div>
+          <aside class="work-study" aria-labelledby="daily-study-title">
+            <button class="work-study-image" type="button" data-lightbox aria-haspopup="dialog" data-title="窗边的书和陶杯" data-kind="创作手记 · 布景" data-description="从骑士读书的场景抽出一页纸、一只陶杯和窗边的光，看看小道具怎么交代时间和氛围。">
+              <img src="assets/works/eagle-green/daily-prop-study.webp" alt="窗光下木桌上的小书和暖陶色杯子，背景是苔绿色椅子" width="1448" height="1086" loading="lazy" decoding="async">
+              <span>放大细节 ↗</span>
+            </button>
+            <div class="work-study-copy">
+              <p>02 / 创作手记</p>
+              <h4 id="daily-study-title">窗边的书和陶杯</h4>
+              <dl class="work-study-facts">
+                <div><dt>观察重点</dt><dd>把纸页、陶杯和布面放在同一束光里，看它们各自的纹理。</dd></div>
+                <div><dt>画面取舍</dt><dd>保留苔绿色椅子做背景，用一只暖陶色杯子把视线带回桌边。</dd></div>
+              </dl>
+            </div>
+          </aside>
+        </section>
+        <section class="visual-series visual-series--armor" aria-labelledby="armor-series-title">
+          <div class="series-head">
+            <div><span class="series-index">SERIES 03 / ARMOR UNIVERSE</span><h3 class="series-title" id="armor-series-title">盔甲宇宙</h3></div>
+            <p class="series-description">我喜欢收藏手办，会留意一个角色的轮廓、材质和小道具。像盔甲里的这朵白花，细节不大，却能让人记住它。</p>
+          </div>
+          <div class="works-grid">
+            <button class="project" id="armor-work-cast" type="button" data-tilt data-lightbox data-title="盔甲群像" data-kind="手办 · 群像" data-description="几位不同轮廓的骑士放在一起，靠盔甲形状和深浅绿区分角色。">
+              <img src="assets/works/eagle-green/armor-cast.webp" alt="几位穿深浅绿色盔甲的黏土骑士合影" loading="lazy" decoding="async">
+              <span class="project-person" aria-hidden="true"><img src="assets/works/eagle-green/armor-cast.webp" alt="" loading="lazy" decoding="async"></span>
+              <span class="project-depth-frame" aria-hidden="true"></span>
+              <span class="project-caption"><strong>盔甲群像</strong><small>手办 · 群像</small></span>
+            </button>
+            <button class="project" type="button" data-tilt data-lightbox data-title="兜帽角色近景" data-kind="角色 · 材质" data-description="深苔色兜帽、细链和一处暖色点缀，放大后能看到手塑的纹理。">
+              <img src="assets/works/eagle-green/hooded-figure.webp" alt="戴深苔色兜帽和金属链饰的黏土角色近景" loading="lazy" decoding="async">
+              <span class="project-person" aria-hidden="true"><img src="assets/works/eagle-green/hooded-figure.webp" alt="" loading="lazy" decoding="async"></span>
+              <span class="project-depth-frame" aria-hidden="true"></span>
+              <span class="project-caption"><strong>兜帽角色近景</strong><small>角色 · 材质</small></span>
+            </button>
+            <button class="project" type="button" data-tilt data-lightbox data-title="拿白花的骑士" data-kind="道具 · 角色细节" data-description="一朵小白花，让苔绿色盔甲有了柔和的一面。">
+              <img src="assets/works/eagle-green/flower-knight.webp" alt="身穿苔绿色盔甲的黏土骑士举着一朵白花" loading="lazy" decoding="async">
+              <span class="project-person" aria-hidden="true"><img src="assets/works/eagle-green/flower-knight.webp" alt="" loading="lazy" decoding="async"></span>
+              <span class="project-depth-frame" aria-hidden="true"></span>
+              <span class="project-caption"><strong>拿白花的骑士</strong><small>道具 · 角色细节</small></span>
+            </button>
+          </div>
+          <aside class="work-study" aria-labelledby="armor-study-title">
+            <button class="work-study-image" type="button" data-lightbox aria-haspopup="dialog" data-title="盔甲材质近景" data-kind="创作手记 · 材质" data-description="把镜头靠近手套与叠甲，看看橄榄绿黏土、磨过的银边和布料接缝之间的区别。">
+              <img src="assets/works/eagle-green/armor-material-study.webp" alt="橄榄绿骑士手套和盔甲叠片的近景，可见银色边缘与布纹" width="1448" height="1086" loading="lazy" decoding="async">
+              <span>放大细节 ↗</span>
+            </button>
+            <div class="work-study-copy">
+              <p>03 / 创作手记</p>
+              <h4 id="armor-study-title">盔甲材质近景</h4>
+              <dl class="work-study-facts">
+                <div><dt>观察重点</dt><dd>放大手套、叠甲和布料的交界，分辨硬边和软面。</dd></div>
+                <div><dt>画面取舍</dt><dd>让橄榄绿盔甲保持哑光，只在叠片边缘留一点银色反光。</dd></div>
+              </dl>
+            </div>
+          </aside>
+        </section>
+        <div class="works-signoff">
+          <div><p>KEEP GROWING / 我的方向</p><strong>无限进步</strong></div>
+          <p>把每次探索，都变成下一步的起点。</p>
+        </div>
       </div>
     </section>
 
@@ -387,9 +711,9 @@
     <section class="contact-section spotlight" id="contact">
       <div class="shell contact-inner">
         <div>
-          <div class="section-kicker">03 / SAY HELLO</div>
-          <h2 class="contact-title">保持联系，<br>一起创造新可能。</h2>
-          <p class="contact-copy">欢迎通过微信认识我，也可以电话联系。</p>
+          <div class="section-kicker">05 / SAY HELLO</div>
+          <h2 class="contact-title">聊聊下一件作品</h2>
+          <p class="contact-copy">如果你也在做个人 IP 或内容创作，欢迎来聊聊你的想法。</p>
         </div>
         <div class="contact-actions">
           <button class="pill contact-button magnetic" id="copy-wechat" type="button" data-copy="Z-IMXI">复制微信号 <span class="arrow" aria-hidden="true">↗</span></button>
@@ -470,8 +794,8 @@
     guideAvatar.addEventListener('pointerleave', () => { guideAvatar.style.setProperty('--gaze-x', '0deg'); guideAvatar.style.setProperty('--gaze-y', '0deg'); });
     const guideStops = [
       { id: 'portrait-stage', say: '嗨，我是赵逸飞。往下走，看看我的个人名片。', action: '认识我', next: '#profile' },
-      { id: 'profile', say: '我的关键词是 IP 操盘、无限进步和北京。', action: '看看视觉片段', next: '#works' },
-      { id: 'works', say: '这些是我收集的角色与故事视觉，点开卡片可以近距离看。', action: '联系我', next: '#contact' },
+      { id: 'profile', say: '我的关键词是 IP 操盘、无限进步和北京。', action: '看看创作故事', next: '#profile-stories' },
+      { id: 'works', say: '这三组是我的黏土视觉练习。点开作品，可以看构图和材质细节。', action: '联系我', next: '#contact' },
       { id: 'contact', say: '想认识我或聊聊合作？微信和电话都在这里。', action: '回到顶部', next: '#top' }
     ];
     const cameraStops = [[0,0],[-34,-18],[-74,-8],[-28,-34]];

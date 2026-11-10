@@ -3,11 +3,11 @@
   --avatar-height: max(480px, calc(100svh - var(--avatar-top)));
   --avatar-run: clamp(620px, 108svh, 1120px);
   --avatar-cream: #fff8e8;
-  --avatar-sage: #a3ad87;
+  --avatar-sage: #a3b28d;
   position: relative;
   z-index: 3;
   color: var(--avatar-cream);
-  background: #263127;
+  background: #2b4233;
 }
 
 .avatar-stage {
@@ -26,7 +26,7 @@
   height: var(--avatar-height);
   overflow: hidden;
   pointer-events: none;
-  background: radial-gradient(ellipse at 46% 38%, #acb593, var(--avatar-sage) 60%, #929e77 100%);
+  background: radial-gradient(ellipse at 51% 37%, #c2caaf, var(--avatar-sage) 62%, #7f936f 100%);
 }
 
 .avatar-picture::before {
@@ -79,7 +79,7 @@
 
 .avatar-shade {
   display: none;
-  background: linear-gradient(90deg, transparent 32%, rgba(29,37,27,.10) 46%, rgba(37,48,34,.75) 74%, #394736 100%);
+  background: linear-gradient(90deg, transparent 32%, #263e2f18 46%, #284131c9 74%, #253e30 100%);
 }
 
 .avatar-label {
@@ -98,9 +98,13 @@
 
 .avatar-intro {
   position: absolute;
-  inset: auto 16px clamp(30px, 12vh, 126px);
-  text-align: center;
-  text-shadow: 0 2px 20px #1a231ab5;
+  inset: auto auto clamp(30px, 9vh, 90px) max(32px, calc((100vw - 1220px) / 2));
+  width: min(32%, 390px);
+  padding: clamp(15px, 2.3vw, 34px);
+  border: 1px solid #e2ead262;
+  border-radius: 16px;
+  background: #293e32eb;
+  box-shadow: 0 10px 30px #26382b31;
 }
 
 .avatar-kicker {
@@ -113,8 +117,8 @@
 
 .avatar-intro h1 {
   margin: 6px 0 3px;
-  font: 500 clamp(43px, 5.35vw, 83px)/1.05 "Marker Felt", "Segoe Print", cursive;
-  letter-spacing: .024em;
+  font: 500 clamp(41px, 5.1vw, 76px)/1.08 var(--serif);
+  letter-spacing: .035em;
 }
 
 .avatar-role {
@@ -143,7 +147,7 @@
 .avatar-resume {
   position: relative;
   padding: clamp(27px, 5vh, 64px) clamp(22px, 6vw, 86px);
-  background: #263127;
+  background: #2b4233;
 }
 
 .avatar-resume h2 {
@@ -229,7 +233,7 @@
 body:has(.avatar-stage:hover) .pointer-follower { visibility: hidden; }
 body:has(.avatar-story.is-onstage) .guide { visibility: hidden; }
 body:has(.avatar-story.is-onstage) .topbar {
-  background: #a0aa85;
+  background: #cbd5b8;
   border-bottom-color: transparent;
 }
 body:has(.avatar-story.is-onstage) .topbar .nav { color: #263322; }
@@ -240,10 +244,10 @@ body:has(.avatar-story.is-onstage) .topbar .nav { color: #263322; }
     height: 83%;
     mask-image: linear-gradient(90deg, transparent, #000 19% 81%, transparent), linear-gradient(180deg, transparent, #000 6% 79%, transparent);
   }
-  .avatar-intro { bottom: clamp(24px, 7vh, 56px); }
+  .avatar-intro { inset: auto 18px clamp(18px, 5vh, 44px); width: auto; text-align: center; padding: 14px 14px 16px; }
   .avatar-intro h1 { font-size: clamp(43px, 11vw, 70px); }
   .avatar-shade {
-    background: linear-gradient(180deg, transparent 32%, rgba(29,39,30,.20) 48%, rgba(27,37,29,.90) 66%, #212b23 100%);
+    background: linear-gradient(180deg, transparent 32%, #293e322e 48%, #263d30e8 66%, #243b2d 100%);
   }
   .is-interactive .avatar-resume {
     top: auto;

@@ -1,17 +1,19 @@
 .profile-vibe {
   position: relative;
   z-index: 2;
-  padding: clamp(12px, 2.6vw, 40px) clamp(12px, 3.3vw, 54px) clamp(28px, 5vw, 78px);
-  background: #f5f3ed;
+  padding: clamp(32px, 5vw, 72px) clamp(18px, 3.3vw, 54px);
+  background: var(--paper);
 }
 
 body:has(.profile-vibe.is-onstage) .guide { visibility: hidden; }
 
 .vibe-stage,
+.vibe-heading,
 .vibe-caption {
-  width: min(100%, 1480px, 166svh);
+  width: min(100%, 1220px, 166svh);
   margin-inline: auto;
 }
+.vibe-heading-title { margin: 0; font: 500 clamp(27px, 4vw, 51px)/1.13 var(--serif); }
 
 .vibe-stage {
   position: relative;
@@ -19,7 +21,9 @@ body:has(.profile-vibe.is-onstage) .guide { visibility: hidden; }
   container-type: inline-size;
   aspect-ratio: 1.83;
   overflow: hidden;
-  background: radial-gradient(ellipse at 48% 39%, #d7cfb4 0%, #c8bea0 72%, #c0b597 100%);
+  border: 1px solid #92a181;
+  border-radius: 14px;
+  background: radial-gradient(ellipse at 48% 39%, #d8dec3 0%, #bccaa9 72%, #9eaf8d 100%);
 }
 
 .vibe-title {
@@ -29,7 +33,7 @@ body:has(.profile-vibe.is-onstage) .guide { visibility: hidden; }
   justify-content: space-between;
   align-items: center;
   margin: 0;
-  color: #191713;
+  color: #2d4635;
   font: 900 20cqi/.82 Georgia, "Times New Roman", serif;
   pointer-events: none;
 }
@@ -92,6 +96,7 @@ body:has(.profile-vibe.is-onstage) .guide { visibility: hidden; }
 
 .vibe-caption {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
