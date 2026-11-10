@@ -20,6 +20,7 @@
 - `assets/zhaoyifei-portrait.jpg`：统一插画风格的个人半身肖像
 - `assets/mascot-zhaoyifei.png`：软陶 3D 角色定帧
 - `assets/mascot-zhaoyifei-frames-3d.png`：四帧角色动作图，用于滚动时前行、停下时定格
+- `assets/mascot-zhaoyifei-animation.gif`：透明背景循环动画导出文件
 - `assets/works/`：作品展示图片（压缩 JPEG）
 
 编辑 `index.html` 和 `assets/` 中的图片即可更新页面。
