@@ -6,6 +6,9 @@
   <meta name="theme-color" content="#f5f3ed">
   <meta name="description" content="赵逸飞的个人简历与视觉内容作品。IP操盘手，持续进步。">
   <title>赵逸飞 — IP操盘手</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,650;12..96,750&family=Noto+Sans+SC:wght@400;500;600;700;800&family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
   <style>
     :root {
       --paper: #f5f3ed;
@@ -17,8 +20,8 @@
       --orange: #ff693b;
       --mint: #c6f2df;
       --line: rgba(17, 28, 45, .15);
-      --serif: "Iowan Old Style", "Songti SC", "Noto Serif SC", Georgia, serif;
-      --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      --serif: "Bricolage Grotesque", "ZCOOL KuaiLe", "Iowan Old Style", "Songti SC", Georgia, serif;
+      --sans: "Noto Sans SC", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
       --mx: 50%;
       --my: 50%;
     }
@@ -60,7 +63,7 @@
     .hero-copy > .hero-meta { animation: hero-enter .95s .58s both; }
     .eyebrow { display: inline-flex; align-items: center; gap: 10px; color: var(--blue-deep); font-size: 12px; letter-spacing: .16em; font-weight: 700; text-transform: uppercase; }
     .status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--orange); box-shadow: 0 0 0 5px rgba(255,105,59,.14); animation: pulse 2s infinite; }
-    h1 { margin: 24px 0 18px; font-size: clamp(54px, 7.1vw, 92px); line-height: 1.08; letter-spacing: -.075em; font-weight: 760; }
+    h1 { margin: 24px 0 18px; font: 750 clamp(54px, 7.1vw, 92px)/1.08 var(--serif); letter-spacing: -.075em; }
     h1 .name { display: block; color: var(--blue); }
     .hero-role { margin: 0 0 14px; font-size: clamp(18px, 2vw, 24px); font-weight: 650; letter-spacing: -.025em; }
     .hero-role span { display: inline-block; padding: 3px 11px 5px; margin-left: 5px; color: var(--ink); background: var(--mint); border-radius: 99px; font-size: .72em; letter-spacing: .02em; vertical-align: 3px; }
@@ -91,6 +94,19 @@
     .spark { position: absolute; z-index: 1; left: 4%; top: 20%; color: var(--orange); font-size: 32px; animation: bob 3.3s ease-in-out infinite; }
     .scroll-note { position: absolute; bottom: 9px; left: 50%; display: flex; flex-direction: column; align-items: center; gap: 7px; color: var(--muted); font-size: 9px; letter-spacing: .18em; transform: translateX(-50%); }
     .scroll-note i { width: 1px; height: 24px; background: var(--blue); transform-origin: top; animation: stretch 1.6s ease-in-out infinite; }
+
+    .guide { position: fixed; z-index: 25; right: max(22px, calc((100vw - 1220px)/2)); bottom: 24px; display: grid; grid-template-columns: 58px minmax(170px, 230px); align-items: end; gap: 11px; pointer-events: none; perspective: 900px; }
+    .guide-avatar { width: 58px; height: 58px; padding: 3px; border: 2px solid var(--ink); border-radius: 19px 19px 19px 6px; background: var(--orange); box-shadow: 5px 6px 0 var(--ink); pointer-events: auto; transform: perspective(500px) rotateX(var(--gaze-y,0deg)) rotateY(var(--gaze-x,0deg)) rotate(-5deg) translateZ(36px); transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s; overflow: hidden; }
+    .guide-avatar:hover { transform: rotate(0) translateY(-7px) translateZ(50px) scale(1.08); box-shadow: 8px 10px 0 var(--ink); }
+    .guide-avatar img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: 50% 18%; border-radius: 14px 14px 14px 4px; }
+    .guide-card { padding: 12px 14px; border: 2px solid var(--ink); border-radius: 15px 15px 4px 15px; color: var(--ink); background: var(--paper); box-shadow: 5px 6px 0 var(--blue); transform: rotateY(-9deg) translateZ(24px); pointer-events: auto; transition: transform .35s, box-shadow .35s; }
+    .guide-card:hover { transform: rotateY(0) translateY(-4px) translateZ(42px); box-shadow: 8px 10px 0 var(--orange); }
+    .guide-kicker { display: flex; justify-content: space-between; color: var(--blue-deep); font-size: 9px; letter-spacing: .11em; font-weight: 800; }
+    .guide-kicker i { color: var(--orange); font-style: normal; animation: pulse 2s infinite; }
+    .guide-say { min-height: 36px; margin: 7px 0 9px; font-size: 11px; line-height: 1.65; }
+    .guide-next { display: inline-flex; align-items: center; gap: 6px; padding: 0; border: 0; color: var(--blue); background: none; font-size: 10px; font-weight: 800; cursor: pointer; }
+    .guide-next:hover { color: var(--orange); }
+    .guide.is-speaking .guide-avatar { animation: guide-pop .55s cubic-bezier(.2,.8,.2,1); }
 
     .ticker { overflow: hidden; background: var(--ink); color: white; transform: rotate(-1.4deg) scale(1.02); }
     .ticker-track { display: flex; width: max-content; gap: 26px; padding: 14px 0; animation: marquee 27s linear infinite; font-size: 12px; letter-spacing: .12em; font-weight: 650; }
@@ -198,6 +214,7 @@
     @keyframes rotate { to { transform: rotate(360deg); } }
     @keyframes stretch { 0%,100% { transform: scaleY(.55); opacity: .45; } 50% { transform: scaleY(1); opacity: 1; } }
     @keyframes marquee { to { transform: translateX(-50%); } }
+    @keyframes guide-pop { 35% { transform: rotate(8deg) translateY(-8px) translateZ(54px); } 70% { transform: rotate(-7deg) translateY(2px) translateZ(40px); } }
     @keyframes lightbox-in { from { opacity: 0; transform: scale(.94) translateY(18px); } to { opacity: 1; transform: scale(1) translateY(0); } }
     @keyframes hero-enter { from { opacity: 0; transform: translateY(24px); filter: blur(5px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
     @keyframes stage-enter { from { opacity: 0; translate: 0 28px; scale: .96; filter: blur(8px); } to { opacity: 1; translate: 0 0; scale: 1; filter: blur(0); } }
@@ -235,6 +252,10 @@
       .meta-chip { padding: 7px 10px; font-size: 10px; }
       .portrait-stage { min-height: 375px; }
       .portrait-frame { width: 78%; height: 350px; border-width: 7px; box-shadow: 14px 15px 0 var(--orange), 0 16px 40px rgba(9,31,74,.2); }
+      .guide { right: 12px; bottom: 12px; grid-template-columns: 46px minmax(145px, 190px); gap: 8px; }
+      .guide-avatar { width: 46px; height: 46px; border-radius: 15px 15px 15px 5px; }
+      .guide-card { padding: 9px 11px; }
+      .guide-say { min-height: 32px; margin: 5px 0 6px; font-size: 10px; }
       .portrait-caption { right: 0; bottom: 27px; font-size: 10px; }
       .orbit { width: 62px; height: 62px; top: 27px; right: 2%; }
       .section { padding: 76px 0; }
@@ -382,6 +403,11 @@
       </div>
     </dialog>
 
+    <aside class="guide" id="guide" aria-label="赵逸飞的页面向导">
+      <div class="guide-avatar" aria-hidden="true"><img src="assets/zhaoyifei-portrait.jpg" alt=""></div>
+      <div class="guide-card"><div class="guide-kicker"><span>逸飞的页面向导</span><i>● LIVE</i></div><p class="guide-say" id="guide-say" aria-live="polite">嗨，我是赵逸飞。往下走，看看我的个人名片。</p><button class="guide-next" id="guide-next" type="button">带我逛逛 <span aria-hidden="true">↘</span></button></div>
+    </aside>
+
     <section class="contact-section spotlight" id="contact">
       <div class="shell contact-inner">
         <div>
@@ -415,6 +441,39 @@
     window.addEventListener('scroll', scheduleProgress, { passive: true });
     window.addEventListener('resize', scheduleProgress, { passive: true });
     paintProgress();
+
+    const guide = document.querySelector('#guide');
+    const guideSay = document.querySelector('#guide-say');
+    const guideNext = document.querySelector('#guide-next');
+    const guideAvatar = document.querySelector('.guide-avatar');
+    guideAvatar.addEventListener('pointermove', (event) => {
+      const rect = guideAvatar.getBoundingClientRect();
+      guideAvatar.style.setProperty('--gaze-x', `${((event.clientX - rect.left) / rect.width - .5) * 18}deg`);
+      guideAvatar.style.setProperty('--gaze-y', `${((event.clientY - rect.top) / rect.height - .5) * -18}deg`);
+    });
+    guideAvatar.addEventListener('pointerleave', () => { guideAvatar.style.setProperty('--gaze-x', '0deg'); guideAvatar.style.setProperty('--gaze-y', '0deg'); });
+    const guideStops = [
+      { id: 'top', say: '嗨，我是赵逸飞。往下走，看看我的个人名片。', action: '认识我', next: '#profile' },
+      { id: 'profile', say: '我的关键词是 IP 操盘、无限进步和北京。', action: '看看视觉片段', next: '#works' },
+      { id: 'works', say: '这些是我收集的角色与故事视觉，点开卡片可以近距离看。', action: '联系我', next: '#contact' },
+      { id: 'contact', say: '想认识我或聊聊合作？微信和电话都在这里。', action: '回到顶部', next: '#top' }
+    ];
+    let guideIndex = 0;
+    guideNext.addEventListener('click', () => document.querySelector(guideStops[guideIndex].next)?.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' }));
+    if ('IntersectionObserver' in window) {
+      const guideObserver = new IntersectionObserver((entries) => {
+        const visible = entries.filter((entry) => entry.isIntersecting).sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (!visible) return;
+        const nextIndex = guideStops.findIndex((stop) => stop.id === visible.target.id);
+        if (nextIndex < 0 || nextIndex === guideIndex) return;
+        guideIndex = nextIndex;
+        guideSay.textContent = guideStops[nextIndex].say;
+        guideNext.innerHTML = `${guideStops[nextIndex].action} <span aria-hidden="true">↘</span>`;
+        guide.classList.remove('is-speaking');
+        requestAnimationFrame(() => guide.classList.add('is-speaking'));
+      }, { threshold: [.35, .6] });
+      guideStops.forEach((stop) => { const section = document.getElementById(stop.id); if (section) guideObserver.observe(section); });
+    }
 
     if (!reduceMotion && 'IntersectionObserver' in window) {
       const observer = new IntersectionObserver((entries) => {
